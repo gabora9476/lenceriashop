@@ -298,6 +298,15 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+
+        .size-badge {
+            background: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -435,6 +444,7 @@
                                     <th>Imagen</th>
                                     <th>Nombre</th>
                                     <th>Descripción</th>
+                                    <th>Tamaño</th>
                                     <th>Precio</th>
                                     <th>Stock</th>
                                     <th>Estado</th>
@@ -544,8 +554,9 @@
                         <form id="financingConfigForm">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label class="form-label">Porcentaje Inicial (%)</label>
-                                    <input type="number" class="form-control" id="initialPercent" min="10" max="90" value="50">
+                                    <label class="form-label">Monto Inicial ($) *</label>
+                                    <input type="number" class="form-control" id="initialAmount" min="1" step="0.01" value="10" required>
+                                    <small class="text-muted">Monto fijo para el pago inicial de cada producto</small>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Número de Cuotas</label>
@@ -602,13 +613,14 @@
                                 <input type="text" class="form-control" id="productName" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Categoría</label>
+                                <label class="form-label">Tamaño *</label>
                                 <select class="form-select" id="productCategory">
-                                    <option value="sabanas">Sábanas</option>
-                                    <option value="cubrecamas">Cubrecamas</option>
-                                    <option value="almohadas">Almohadas</option>
-                                    <option value="fundas">Fundas</option>
+                                    <option value="sabanas">Individual</option>
+                                    <option value="cubrecamas">Matrimonial</option>
+                                    <option value="almohadas">Queen</option>
+                                    <option value="fundas">King</option>
                                 </select>
+                                <small class="text-muted">Tamaño del producto</small>
                             </div>
                         </div>
                         <div class="mt-3">
@@ -680,11 +692,19 @@
         // Global variables
         let currentSection = 'dashboard';
         let financingConfig = {
-            porcentaje_inicial: 50,
+            monto_inicial: 10,
             numero_cuotas: 2,
             dias_cuota: 15
         };
         let uploadedImageUrl = null;
+
+        // Size mapping from database categories to display names
+        const sizeMapping = {
+            'sabanas': 'Individual',
+            'cubrecamas': 'Matrimonial',
+            'almohadas': 'Queen',
+            'fundas': 'King'
+        };
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -945,6 +965,7 @@
             tbody.innerHTML = '';
 
             products.forEach(product => {
+                const sizeName = sizeMapping[product.categoria] || product.categoria;
                 const row = `
                     <tr>
                         <td>
@@ -953,6 +974,7 @@
                         </td>
                         <td>${product.nombre}</td>
                         <td>${product.descripcion || '-'}</td>
+                        <td><span class="size-badge">${sizeName}</span></td>
                         <td>$${product.precio.toFixed(2)}</td>
                         <td>
                             <span class="${product.stock > 5 ? 'text-success' : product.stock > 0 ? 'text-warning' : 'text-danger'}">
@@ -1351,9 +1373,9 @@
                     switch(item.clave) {
                         case 'financiamiento':
                             financingConfig = item.valor;
-                            document.getElementById('initialPercent').value = financingConfig.porcentaje_inicial;
-                            document.getElementById('numQuotas').value = financingConfig.numero_cuotas;
-                            document.getElementById('daysBetweenQuotas').value = financingConfig.dias_cuota;
+                            document.getElementById('initialAmount').value = financingConfig.monto_inicial || 10;
+                            document.getElementById('numQuotas').value = financingConfig.numero_cuotas || 2;
+                            document.getElementById('daysBetweenQuotas').value = financingConfig.dias_cuota || 15;
                             break;
                         case 'whatsapp_ventas':
                             document.getElementById('salesWhatsApp').value = item.valor;
@@ -1371,7 +1393,7 @@
         // Save financing configuration
         async function saveFinancingConfig() {
             const config = {
-                porcentaje_inicial: parseInt(document.getElementById('initialPercent').value),
+                monto_inicial: parseFloat(document.getElementById('initialAmount').value),
                 numero_cuotas: parseInt(document.getElementById('numQuotas').value),
                 dias_cuota: parseInt(document.getElementById('daysBetweenQuotas').value)
             };
