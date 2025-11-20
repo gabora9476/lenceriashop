@@ -24,6 +24,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--light-bg);
             color: var(--dark-color);
+            display: flex;
+            flex-direction: min-height: 100vh;
+        }
+
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .navbar {
@@ -40,44 +48,67 @@
 
         .hero-section {
             background: linear-gradient(135deg, rgba(212,165,116,0.1), rgba(245,230,211,0.3));
-            padding: 40px 0;
+            padding: 20px 0;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .hero-section h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 300;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             color: var(--dark-color);
+        }
+
+        .hero-section p {
+            margin-bottom: 0;
         }
 
         /* Category Filter Buttons */
         .category-filters {
             background: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .filter-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
         }
 
         .filter-btn {
             background: white;
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
-            padding: 10px 20px;
-            border-radius: 25px;
-            margin: 5px;
+            padding: 6px 14px;
+            border-radius: 20px;
             font-weight: 500;
             transition: all 0.3s ease;
             cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .filter-btn:hover, .filter-btn.active {
             background: var(--primary-color);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212,165,116,0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(212,165,116,0.3);
+        }
+
+        .filter-btn i {
+            font-size: 0.9rem;
+        }
+
+        .content-section {
+            flex: 1;
+            padding-bottom: 60px;
         }
 
         .product-card {
@@ -86,7 +117,7 @@
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             height: 100%;
         }
 
@@ -97,35 +128,35 @@
 
         .product-image {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
             background: var(--secondary-color);
         }
 
         .product-body {
-            padding: 20px;
+            padding: 15px;
         }
 
         .product-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: var(--dark-color);
         }
 
         .product-price {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary-color);
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .stock-badge {
             display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
         }
 
         .stock-available {
@@ -142,8 +173,8 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             border: none;
             color: white;
-            padding: 10px 25px;
-            border-radius: 25px;
+            padding: 8px 20px;
+            border-radius: 20px;
             font-weight: 500;
             transition: all 0.3s ease;
             width: 100%;
@@ -203,17 +234,17 @@
 
         .whatsapp-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background: #25d366;
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
+            font-size: 25px;
             box-shadow: 0 5px 20px rgba(37,211,102,0.4);
             text-decoration: none;
             z-index: 1000;
@@ -225,19 +256,83 @@
             color: white;
         }
 
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .pagination .page-link {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 8px 12px;
+        }
+
+        .pagination .page-item.active .page-link {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .pagination .page-link:hover {
+            color: white;
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: auto;
+        }
+
+        .footer small {
+            font-size: 0.8rem;
+        }
+
         @media (max-width: 768px) {
             .hero-section h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
             .product-card {
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
 
             .filter-btn {
-                font-size: 0.9rem;
-                padding: 8px 15px;
-                margin: 3px;
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+
+            .filter-btn i {
+                font-size: 0.8rem;
+            }
+
+            .product-image {
+                height: 180px;
+            }
+
+            .product-body {
+                padding: 12px;
+            }
+
+            .product-title {
+                font-size: 1rem;
+            }
+
+            .product-price {
+                font-size: 1.1rem;
+            }
+
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+                bottom: 15px;
+                right: 15px;
             }
         }
 
@@ -267,61 +362,87 @@
             font-size: 0.8rem;
             font-weight: 500;
         }
+
+        .no-products {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .no-products i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-shop"></i> LenceriaShops
-            </a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <h1>Catálogo de Lencería Premium</h1>
-            <p class="lead">Descubre nuestra exclusiva colección por tamaños</p>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section class="container mb-5">
-        <!-- Category Filters -->
-        <div class="category-filters">
-            <div class="text-center mb-3">
-                <h5 class="mb-3">Filtrar por Tamaño</h5>
-                <button class="filter-btn active" onclick="filterBySize('all')">
-                    <i class="bi bi-grid-3x3-gap"></i> Todos
-                </button>
-                <button class="filter-btn" onclick="filterBySize('sabanas')">
-                    <i class="bi bi-rulers"></i> Individual
-                </button>
-                <button class="filter-btn" onclick="filterBySize('cubrecamas')">
-                    <i class="bi bi-arrows-angle-expand"></i> Matrimonial
-                </button>
-                <button class="filter-btn" onclick="filterBySize('almohadas')">
-                    <i class="bi bi-arrows-fullscreen"></i> Queen
-                </button>
-                <button class="filter-btn" onclick="filterBySize('fundas')">
-                    <i class="bi bi-aspect-ratio"></i> King
-                </button>
+    <div class="main-wrapper">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="bi bi-shop"></i> LenceriaShops
+                </a>
             </div>
-        </div>
+        </nav>
 
-        <div class="loading-spinner" id="loadingSpinner">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Cargando...</span>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <h1>Catálogo de Lencería Premium</h1>
+                <p class="lead">Descubre nuestra exclusiva colección por tamaños</p>
             </div>
-            <p class="mt-3">Cargando productos...</p>
-        </div>
-        
-        <div class="row" id="productsContainer">
-            <!-- Products will be loaded here -->
-        </div>
-    </section>
+        </section>
+
+        <!-- Products Section -->
+        <section class="content-section">
+            <div class="container">
+                <!-- Category Filters -->
+                <div class="category-filters">
+                    <div class="filter-buttons-container">
+                        <button class="filter-btn active" onclick="filterBySize('all')">
+                            <i class="bi bi-grid-3x3-gap"></i> Todos
+                        </button>
+                        <button class="filter-btn" onclick="filterBySize('sabanas')">
+                            <i class="bi bi-rulers"></i> Individual
+                        </button>
+                        <button class="filter-btn" onclick="filterBySize('cubrecamas')">
+                            <i class="bi bi-arrows-angle-expand"></i> Matrimonial
+                        </button>
+                        <button class="filter-btn" onclick="filterBySize('almohadas')">
+                            <i class="bi bi-arrows-fullscreen"></i> Queen
+                        </button>
+                        <button class="filter-btn" onclick="filterBySize('fundas')">
+                            <i class="bi bi-aspect-ratio"></i> King
+                        </button>
+                    </div>
+                </div>
+
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                    <p class="mt-3">Cargando productos...</p>
+                </div>
+                
+                <div class="row" id="productsContainer">
+                    <!-- Products will be loaded here -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container" id="paginationContainer">
+                    <!-- Pagination will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <small>&copy; 2024 LenceriaShops | Powered by: gstarINK</small>
+            </div>
+        </footer>
+    </div>
 
     <!-- Purchase Modal -->
     <div class="modal fade" id="purchaseModal" tabindex="-1">
@@ -441,6 +562,8 @@
         let financingConfig = null;
         let allProducts = [];
         let currentFilter = 'all';
+        let currentPage = 1;
+        const productsPerPage = 15;
 
         // Size mapping from database categories to display names
         const sizeMapping = {
@@ -524,6 +647,7 @@
         // Filter products by size
         function filterBySize(size) {
             currentFilter = size;
+            currentPage = 1; // Reset to first page when filtering
             
             // Update active button
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -532,11 +656,7 @@
             event.target.classList.add('active');
             
             // Filter and display products
-            const filteredProducts = size === 'all' 
-                ? allProducts 
-                : allProducts.filter(product => product.categoria === size);
-            
-            displayProducts(filteredProducts);
+            displayProducts();
         }
 
         // Load products from Supabase
@@ -553,7 +673,7 @@
                 if (error) throw error;
 
                 allProducts = products || [];
-                displayProducts(allProducts);
+                displayProducts();
                 document.getElementById('loadingSpinner').style.display = 'none';
             } catch (error) {
                 console.error('Error loading products:', error);
@@ -562,46 +682,120 @@
             }
         }
 
-        // Display products
-        function displayProducts(products) {
+        // Display products with pagination
+        function displayProducts() {
             const container = document.getElementById('productsContainer');
-            container.innerHTML = '';
+            
+            // Filter products
+            const filteredProducts = currentFilter === 'all' 
+                ? allProducts 
+                : allProducts.filter(product => product.categoria === currentFilter);
+            
+            // Calculate pagination
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const productsToShow = filteredProducts.slice(startIndex, endIndex);
 
-            if (products.length === 0) {
+            if (productsToShow.length === 0) {
                 container.innerHTML = `
-                    <div class="col-12 text-center py-5">
-                        <i class="bi bi-inbox" style="font-size: 3rem; color: #6c757d;"></i>
-                        <p class="mt-3 text-muted">No hay productos disponibles en esta categoría</p>
-                    </div>
-                `;
-                return;
-            }
-
-            products.forEach(product => {
-                const stockClass = product.stock > 5 ? 'stock-available' : 'stock-low';
-                const stockText = product.stock > 5 ? 'Disponible' : `¡Solo ${product.stock} disponibles!`;
-                const sizeName = sizeMapping[product.categoria] || product.categoria;
-
-                const productCard = `
-                    <div class="col-md-6 col-lg-4">
-                        <div class="product-card">
-                            <img src="${product.imagen || 'https://picsum.photos/seed/lenceria' + product.id + '/400/300'}" 
-                                 alt="${product.nombre}" class="product-image">
-                            <div class="product-body">
-                                <h5 class="product-title">${product.nombre}</h5>
-                                <p class="text-muted small">${product.descripcion || ''}</p>
-                                <span class="size-badge">${sizeName}</span>
-                                <div class="product-price">$${product.precio.toFixed(2)}</div>
-                                <span class="stock-badge ${stockClass}">${stockText}</span>
-                                <button class="btn btn-buy" onclick="openPurchaseModal(${product.id}, '${product.nombre}', ${product.precio})" 
-                                        ${product.stock <= 0 ? 'disabled' : ''}>
-                                    <i class="bi bi-cart-plus"></i> Comprar
-                                </button>
-                            </div>
+                    <div class="col-12">
+                        <div class="no-products">
+                            <i class="bi bi-inbox"></i>
+                            <h5>No hay productos disponibles</h5>
+                            <p class="text-muted">Intenta con otra categoría</p>
                         </div>
                     </div>
                 `;
-                container.innerHTML += productCard;
+            } else {
+                container.innerHTML = '';
+                productsToShow.forEach(product => {
+                    const stockClass = product.stock > 5 ? 'stock-available' : 'stock-low';
+                    const stockText = product.stock > 5 ? 'Disponible' : `¡Solo ${product.stock} disponibles!`;
+                    const sizeName = sizeMapping[product.categoria] || product.categoria;
+
+                    const productCard = `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="product-card">
+                                <img src="${product.imagen || 'https://picsum.photos/seed/lenceria' + product.id + '/400/300'}" 
+                                     alt="${product.nombre}" class="product-image">
+                                <div class="product-body">
+                                    <h5 class="product-title">${product.nombre}</h5>
+                                    <p class="text-muted small">${product.descripcion || ''}</p>
+                                    <span class="size-badge">${sizeName}</span>
+                                    <div class="product-price">$${product.precio.toFixed(2)}</div>
+                                    <span class="stock-badge ${stockClass}">${stockText}</span>
+                                    <button class="btn btn-buy" onclick="openPurchaseModal(${product.id}, '${product.nombre}', ${product.precio})" 
+                                            ${product.stock <= 0 ? 'disabled' : ''}>
+                                        <i class="bi bi-cart-plus"></i> Comprar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += productCard;
+                });
+            }
+
+            // Update pagination
+            updatePagination(totalPages);
+        }
+
+        // Update pagination controls
+        function updatePagination(totalPages) {
+            const paginationContainer = document.getElementById('paginationContainer');
+            
+            if (totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+
+            let paginationHTML = '<nav><ul class="pagination">';
+            
+            // Previous button
+            if (currentPage > 1) {
+                paginationHTML += `<li class="page-item">
+                    <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>`;
+            }
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    paginationHTML += `<li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                    </li>`;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    paginationHTML += `<li class="page-item disabled">
+                        <a class="page-link" href="#">...</a>
+                    </li>`;
+                }
+            }
+
+            // Next button
+            if (currentPage < totalPages) {
+                paginationHTML += `<li class="page-item">
+                    <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>`;
+            }
+
+            paginationHTML += '</ul></nav>';
+            paginationContainer.innerHTML = paginationHTML;
+        }
+
+        // Change page
+        function changePage(page) {
+            currentPage = page;
+            displayProducts();
+            
+            // Scroll to top of products
+            document.querySelector('.content-section').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
             });
         }
 
