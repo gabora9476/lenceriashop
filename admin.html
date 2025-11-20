@@ -170,6 +170,11 @@
             color: #721c24;
         }
 
+        .status-sold {
+            background: #dc3545;
+            color: white;
+        }
+
         .form-control, .form-select {
             border-radius: 10px;
             border: 1px solid #e0e0e0;
@@ -640,7 +645,7 @@
                                 <label class="form-label">Estado</label>
                                 <select class="form-select" id="productStatus">
                                     <option value="true">Activo</option>
-                                    <option value="false">Inactivo</option>
+                                    <option value="false">Vendido</option>
                                 </select>
                             </div>
                         </div>
@@ -982,8 +987,8 @@
                             </span>
                         </td>
                         <td>
-                            <span class="status-badge ${product.activo ? 'status-paid' : 'status-pending'}">
-                                ${product.activo ? 'Activo' : 'Inactivo'}
+                            <span class="status-badge ${product.activo ? 'status-paid' : 'status-sold'}">
+                                ${product.activo ? 'Activo' : 'Vendido'}
                             </span>
                         </td>
                         <td>
