@@ -2,534 +2,292 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LenceriaShops - Catálogo de Lencería</title>
-    
-    <!-- Favicon and App Icons -->
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    
-    <!-- Mobile App Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LenceriaShops - Catálogo</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="LenceriaShops">
-    <meta name="application-name" content="LenceriaShops">
-    <meta name="msapplication-TileColor" content="#d4a574">
-    <meta name="msapplication-TileImage" content="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    
+    <meta name="theme-color" content="#d4a574">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary-color: #d4a574;
-            --secondary-color: #f5e6d3;
-            --dark-color: #2c1810;
-            --light-bg: #faf8f5;
+            --primary: #d4a574;
+            --secondary: #f5e6d3;
+            --dark: #2c1810;
+            --bg: #faf8f5;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--dark-color);
-            display: flex;
-            flex-direction: min-height: 100vh;
-        }
-
-        .main-wrapper {
-            flex: 1;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
-
         .navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            padding: 10px 0;
         }
-
         .navbar-brand {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
             color: white !important;
         }
-
         .hero-section {
             background: linear-gradient(135deg, rgba(212,165,116,0.1), rgba(245,230,211,0.3));
-            padding: 20px 0;
+            padding: 12px 0 10px;
             text-align: center;
-            margin-bottom: 20px;
         }
-
-        .hero-section h1 {
-            font-size: 2rem;
-            font-weight: 300;
-            margin-bottom: 10px;
-            color: var(--dark-color);
-        }
-
-        .hero-section p {
-            margin-bottom: 0;
-        }
-
-        /* Category Filter Buttons */
+        .hero-section h1 { font-size: 1.2rem; font-weight: 400; color: var(--dark); }
+        .hero-section p { font-size: 0.8rem; color: #666; margin: 2px 0 0; }
         .category-filters {
             background: white;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 10px 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
         .filter-buttons-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
-
         .filter-btn {
             background: white;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 6px 14px;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            padding: 4px 11px;
             border-radius: 20px;
             font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 0.75rem;
             cursor: pointer;
-            font-size: 0.85rem;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--primary-color);
+        .filter-btn.active, .filter-btn:active {
+            background: var(--primary);
             color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(212,165,116,0.3);
         }
-
-        .filter-btn i {
-            font-size: 0.9rem;
-        }
-
-        .content-section {
-            flex: 1;
-            padding-bottom: 60px;
-        }
-
+        .content-section { flex: 1; padding: 10px 0 70px; }
         .product-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
             height: 100%;
             position: relative;
         }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
         .product-image {
             width: 100%;
-            height: 200px;
+            height: 160px;
             object-fit: cover;
-            background: var(--secondary-color);
+            background: var(--secondary);
+            display: block;
         }
-
-        .product-image.sold {
-            opacity: 0.7;
-            filter: grayscale(20%);
-        }
-
-        .product-body {
-            padding: 15px;
-        }
-
-        .product-title {
-            font-size: 1.1rem;
+        .product-image.sold { opacity: 0.65; filter: grayscale(30%); }
+        .product-body { padding: 10px; }
+        .product-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+        .product-desc { font-size: 0.72rem; color: #888; margin-bottom: 4px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .product-price { font-size: 1.05rem; color: var(--primary); font-weight: 700; margin-bottom: 6px; }
+        .size-badge {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 2px 7px;
+            border-radius: 8px;
+            font-size: 0.68rem;
             font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--dark-color);
-        }
-
-        .product-price {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .stock-badge {
             display: inline-block;
-            padding: 4px 8px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            margin-bottom: 12px;
+            margin-bottom: 6px;
         }
-
-        .stock-available {
-            background: #d4edda;
-            color: #155724;
+        .stock-badge {
+            display: block;
+            padding: 2px 0;
+            font-size: 0.7rem;
+            margin-bottom: 7px;
         }
-
-        .stock-low {
-            background: #fff3cd;
-            color: #856404;
-        }
-
+        .stock-available { color: #155724; }
+        .stock-low { color: #856404; }
         .sold-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 8px;
+            right: 8px;
             background: #dc3545;
             color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 10;
-            box-shadow: 0 2px 10px rgba(220, 53, 69, 0.5);
-            transform: rotate(5deg);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: rotate(5deg) scale(1);
-            }
-            50% {
-                transform: rotate(5deg) scale(1.05);
-            }
-            100% {
-                transform: rotate(5deg) scale(1);
-            }
-        }
-
-        .btn-buy {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .btn-buy:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(212,165,116,0.4);
-        }
-
-        .btn-buy:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-buy:disabled:hover {
-            transform: none;
-            box-shadow: none;
-        }
-
-        .modal-content {
-            border-radius: 20px;
-            border: none;
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .form-control, .form-select {
-            border-radius: 10px;
-            border: 1px solid #e0e0e0;
-            padding: 12px;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(212,165,116,0.25);
-        }
-
-        .payment-option {
-            border: 2px solid #e0e0e0;
+            padding: 3px 9px;
             border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 15px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            z-index: 5;
+            transform: rotate(4deg);
+        }
+        .btn-buy {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            width: 100%;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: opacity 0.2s;
         }
-
-        .payment-option:hover {
-            border-color: var(--primary-color);
-            background: #faf8f5;
-        }
-
-        .payment-option.selected {
-            border-color: var(--primary-color);
-            background: rgba(212,165,116,0.1);
-        }
-
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
-
+        .btn-buy:disabled { background: #aaa; cursor: not-allowed; }
+        .loading-spinner { display: none; text-align: center; padding: 30px; }
+        .no-products { text-align: center; padding: 30px; color: #999; }
+        .no-products i { font-size: 2.5rem; display: block; margin-bottom: 10px; }
         .whatsapp-btn {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 72px;
+            right: 15px;
             background: #25d366;
             color: white;
-            width: 55px;
-            height: 55px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 25px;
-            box-shadow: 0 5px 20px rgba(37,211,102,0.4);
+            font-size: 22px;
+            box-shadow: 0 4px 14px rgba(37,211,102,0.45);
             text-decoration: none;
-            z-index: 1000;
-            transition: all 0.3s ease;
+            z-index: 900;
         }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-            color: white;
-        }
-
-        /* Pagination */
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .pagination .page-link {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-            padding: 8px 12px;
-        }
-
-        .pagination .page-item.active .page-link {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        .pagination .page-link:hover {
-            color: white;
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        /* Footer */
         .footer {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             text-align: center;
-            padding: 15px 0;
-            margin-top: auto;
+            padding: 10px 0;
         }
+        .footer small { font-size: 0.72rem; }
+        .footer a { color: white; text-decoration: none; font-weight: 500; }
+        .pagination-container { display: flex; justify-content: center; margin-top: 16px; }
+        .pagination .page-link { color: var(--primary); border-color: var(--primary); padding: 5px 10px; font-size: 0.82rem; }
+        .pagination .page-item.active .page-link { background: var(--primary); border-color: var(--primary); color: white; }
 
-        .footer small {
-            font-size: 0.8rem;
-        }
-
-        .footer a {
+        /* Modal mobile */
+        .modal-content { border-radius: 16px; border: none; }
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            border-radius: 16px 16px 0 0;
+            padding: 12px 16px;
         }
-
-        .footer a:hover {
-            text-decoration: underline;
+        .modal-title { font-size: 1rem; }
+        .modal-body { padding: 14px; }
+        .modal-footer { padding: 10px 14px; }
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 8px 10px;
+            font-size: 0.85rem;
         }
-
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 1.5rem;
-            }
-            
-            .product-card {
-                margin-bottom: 15px;
-            }
-
-            .filter-btn {
-                padding: 5px 10px;
-                font-size: 0.75rem;
-            }
-
-            .filter-btn i {
-                font-size: 0.8rem;
-            }
-
-            .product-image {
-                height: 180px;
-            }
-
-            .product-body {
-                padding: 12px;
-            }
-
-            .product-title {
-                font-size: 1rem;
-            }
-
-            .product-price {
-                font-size: 1.1rem;
-            }
-
-            .whatsapp-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 22px;
-                bottom: 15px;
-                right: 15px;
-            }
+        .form-label { font-size: 0.82rem; font-weight: 500; margin-bottom: 3px; }
+        .form-text-transform-hint { font-size: 0.7rem; color: #999; margin-top: 2px; }
+        .payment-option {
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s;
         }
-
+        .payment-option.selected { border-color: var(--primary); background: rgba(212,165,116,0.06); }
+        .form-check-label strong { font-size: 0.85rem; }
+        .form-check-label p { font-size: 0.75rem; }
         .financing-details {
             background: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
             display: none;
+            font-size: 0.82rem;
         }
+        .financing-details.show { display: block; }
+        .financing-details .h5 { font-size: 1rem; }
+        .alert { font-size: 0.8rem; padding: 8px 12px; }
 
-        .financing-details.show {
-            display: block;
-        }
-
-        .form-text-transform-hint {
-            font-size: 0.75rem;
-            color: #6c757d;
-            margin-top: 2px;
-        }
-
-        .size-badge {
-            background: var(--secondary-color);
-            color: var(--dark-color);
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .no-products {
-            text-align: center;
-            padding: 40px;
-            color: #6c757d;
-        }
-
-        .no-products i {
-            font-size: 3rem;
-            margin-bottom: 15px;
+        @media (max-width: 767px) {
+            .modal-dialog { margin: 10px; }
+            .modal-content { border-radius: 14px; }
+            .product-image { height: 140px; }
+            .product-body { padding: 8px; }
         }
     </style>
 </head>
 <body>
-    <div class="main-wrapper">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <i class="bi bi-shop"></i> LenceriaShops
-                </a>
-            </div>
-        </nav>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-shop"></i> LenceriaShops
+            </a>
+        </div>
+    </nav>
 
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="container">
-                <h1>Catálogo de Lencería Premium</h1>
-                <p class="lead">Descubre nuestra exclusiva colección por tamaños</p>
-            </div>
-        </section>
+    <section class="hero-section">
+        <div class="container">
+            <h1>Catálogo de Lencería Premium</h1>
+            <p>Colección exclusiva por tamaños</p>
+        </div>
+    </section>
 
-        <!-- Products Section -->
-        <section class="content-section">
-            <div class="container">
-                <!-- Category Filters -->
-                <div class="category-filters">
-                    <div class="filter-buttons-container">
-                        <button class="filter-btn active" onclick="filterBySize('all')">
-                            <i class="bi bi-grid-3x3-gap"></i> Todos
-                        </button>
-                        <button class="filter-btn" onclick="filterBySize('sabanas')">
-                            <i class="bi bi-rulers"></i> Individual
-                        </button>
-                        <button class="filter-btn" onclick="filterBySize('cubrecamas')">
-                            <i class="bi bi-arrows-angle-expand"></i> Matrimonial
-                        </button>
-                        <button class="filter-btn" onclick="filterBySize('almohadas')">
-                            <i class="bi bi-arrows-fullscreen"></i> Queen
-                        </button>
-                        <button class="filter-btn" onclick="filterBySize('fundas')">
-                            <i class="bi bi-aspect-ratio"></i> King
-                        </button>
-                    </div>
-                </div>
-
-                <div class="loading-spinner" id="loadingSpinner">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Cargando...</span>
-                    </div>
-                    <p class="mt-3">Cargando productos...</p>
-                </div>
-                
-                <div class="row" id="productsContainer">
-                    <!-- Products will be loaded here -->
-                </div>
-
-                <!-- Pagination -->
-                <div class="pagination-container" id="paginationContainer">
-                    <!-- Pagination will be loaded here -->
+    <section class="content-section">
+        <div class="container-fluid px-2">
+            <div class="category-filters mb-2" style="border-radius:0;">
+                <div class="filter-buttons-container">
+                    <button class="filter-btn active" onclick="filterBySize('all', this)">
+                        <i class="bi bi-grid-3x3-gap"></i> Todos
+                    </button>
+                    <button class="filter-btn" onclick="filterBySize('sabanas', this)">
+                        <i class="bi bi-rulers"></i> Individual
+                    </button>
+                    <button class="filter-btn" onclick="filterBySize('cubrecamas', this)">
+                        <i class="bi bi-arrows-angle-expand"></i> Matrimonial
+                    </button>
+                    <button class="filter-btn" onclick="filterBySize('almohadas', this)">
+                        <i class="bi bi-arrows-fullscreen"></i> Queen
+                    </button>
+                    <button class="filter-btn" onclick="filterBySize('fundas', this)">
+                        <i class="bi bi-aspect-ratio"></i> King
+                    </button>
                 </div>
             </div>
-        </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <small>&copy; 2024 LenceriaShops | Powered by: <a href="https://www.instagram.com/inkgstar" target="_blank">gstarINK</a></small>
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border" style="color:var(--primary)" role="status"></div>
+                <p class="mt-2 small">Cargando productos...</p>
             </div>
-        </footer>
-    </div>
+
+            <div class="row g-2 px-1" id="productsContainer"></div>
+
+            <div class="pagination-container" id="paginationContainer"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <small>&copy; 2024 LenceriaShops | <a href="https://www.instagram.com/inkgstar" target="_blank">gstarINK</a></small>
+        </div>
+    </footer>
 
     <!-- Purchase Modal -->
     <div class="modal fade" id="purchaseModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Completar Compra</h5>
+                    <h5 class="modal-title"><i class="bi bi-bag-check"></i> Completar Compra</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -537,116 +295,138 @@
                         <input type="hidden" id="productId">
                         <input type="hidden" id="productPrice">
                         <input type="hidden" id="productName">
-                        
-                        <div class="row mb-3">
-                            <div class="col-md-6">
+
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
                                 <label class="form-label">Nombre *</label>
-                                <input type="text" class="form-control text-capitalize" id="firstName" required>
-                                <div class="form-text-transform-hint">Introduzca su nombre</div>
+                                <input type="text" class="form-control" id="firstName" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-6">
                                 <label class="form-label">Apellido *</label>
-                                <input type="text" class="form-control text-capitalize" id="lastName" required>
-                                <div class="form-text-transform-hint">Introduzca su apellido</div>
+                                <input type="text" class="form-control" id="lastName" required>
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label class="form-label">WhatsApp *</label>
                             <input type="tel" class="form-control" id="whatsapp" placeholder="+58 422XXXXXXX" required>
-                            <div class="form-text-transform-hint">Introduzca su número de WhatsApp</div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
                                 <label class="form-label">Edificio *</label>
                                 <input type="text" class="form-control text-uppercase" id="building" required>
-                                <div class="form-text-transform-hint">Introduzca el nombre del edificio</div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-6">
                                 <label class="form-label">Apartamento *</label>
                                 <input type="text" class="form-control text-uppercase" id="apartment" required>
-                                <div class="form-text-transform-hint">Introduzca el número de apartamento</div>
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-1">
                             <label class="form-label">Método de Pago *</label>
-                            <div class="payment-option" data-payment="full">
+                            <div class="payment-option" onclick="this.querySelector('input').click()">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="paymentType" id="paymentFull" value="full" required>
                                     <label class="form-check-label" for="paymentFull">
                                         <strong>Pago Completo</strong>
-                                        <p class="mb-0 text-muted small">Pagar el total del producto</p>
+                                        <p class="mb-0 text-muted">Total del producto</p>
                                     </label>
                                 </div>
                             </div>
-                            <div class="payment-option" data-payment="financing">
+                            <div class="payment-option" onclick="this.querySelector('input').click()">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="paymentType" id="paymentFinancing" value="financing">
                                     <label class="form-check-label" for="paymentFinancing">
                                         <strong>Financiamiento</strong>
-                                        <p class="mb-0 text-muted small">Pago inicial + cuotas quincenales</p>
+                                        <p class="mb-0 text-muted">Inicial + cuotas quincenales</p>
                                     </label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="financing-details" id="financingDetails">
-                            <h6>Detalles del Financiamiento</h6>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p class="mb-1"><strong>Pago Inicial:</strong></p>
-                                    <p class="h5 text-primary" id="initialAmount">$0</p>
+                            <h6 class="mb-2">Detalles del Financiamiento</h6>
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <small class="text-muted d-block">Inicial</small>
+                                    <span class="h5" style="color:var(--primary)" id="initialAmount">$0</span>
                                 </div>
-                                <div class="col-md-4">
-                                    <p class="mb-1"><strong>Cuota 1:</strong></p>
-                                    <p class="h5 text-primary" id="quota1">$0</p>
+                                <div class="col-4">
+                                    <small class="text-muted d-block">Cuota 1</small>
+                                    <span class="h5" style="color:var(--primary)" id="quota1">$0</span>
                                 </div>
-                                <div class="col-md-4">
-                                    <p class="mb-1"><strong>Cuota 2:</strong></p>
-                                    <p class="h5 text-primary" id="quota2">$0</p>
+                                <div class="col-4">
+                                    <small class="text-muted d-block">Cuota 2</small>
+                                    <span class="h5" style="color:var(--primary)" id="quota2">$0</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="alert alert-info">
-                            <i class="bi bi-info-circle"></i> Al continuar, serás redirigido a WhatsApp para confirmar tu compra.
+                        <div class="alert alert-info mt-2 mb-0">
+                            <i class="bi bi-info-circle"></i> Serás redirigido a WhatsApp para confirmar.
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="confirmPurchase">
-                        <i class="bi bi-whatsapp"></i> Confirmar Compra
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-sm" id="confirmPurchase" style="background:var(--primary);color:white;border:none;border-radius:8px;padding:7px 16px;">
+                        <i class="bi bi-whatsapp"></i> Confirmar
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- WhatsApp Support Button -->
-    <a href="https://wa.me/584129204453?text=Hola%20LenceriaShops%2C%20necesito%20ayuda%20con%20mi%20compra.%20%C2%BFPodr%C3%ADan%20asistirme%3F" target="_blank" class="whatsapp-btn">
+    <a href="https://wa.me/584129204453?text=Hola%20LenceriaShops%2C%20necesito%20ayuda." target="_blank" class="whatsapp-btn">
         <i class="bi bi-headset"></i>
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Supabase configuration
-        const supabaseUrl = 'https://ahcmnlibucwylgnotovj.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoY21ubGlidWN3eWxnbm90b3ZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM1ODY1NDcsImV4cCI6MjA3OTE2MjU0N30.1S7ZO2IdrsPoYBEEPK6z5_t4qVvkdc4cqNRjPhqtHuE';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        // =====================================================
+        // JSONBin.io Configuration
+        // REEMPLAZA los IDs de los bins con los tuyos
+        // =====================================================
+        const DB = {
+            key: '$2a$10$.8.yyKcPSDxyqhB3HXGfRO0vfwIxCo/nKu18i.U8/N78AauRqJhre',
+            bins: {
+                productos:    '699e7bf7d0ea881f40d6e62e',   // ← reemplaza
+                compras:      '699e7bd143b1c97be99b7d65',     // ← reemplaza
+                cuotas:       '699e7be4d0ea881f40d6e603',      // ← reemplaza
+                config:       '699e7bf7d0ea881f40d6e62e'        // ← reemplaza
+            },
+            baseUrl: 'https://api.jsonbin.io/v3/b',
+            async get(bin) {
+                const r = await fetch(`${this.baseUrl}/${this.bins[bin]}/latest`, {
+                    headers: { 'X-Master-Key': this.key }
+                });
+                if (!r.ok) throw new Error('Error leyendo ' + bin);
+                return (await r.json()).record;
+            },
+            async set(bin, data) {
+                const r = await fetch(`${this.baseUrl}/${this.bins[bin]}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', 'X-Master-Key': this.key },
+                    body: JSON.stringify(data)
+                });
+                if (!r.ok) throw new Error('Error escribiendo ' + bin);
+                return (await r.json()).record;
+            }
+        };
 
-        // Global variables
+        const uid = () => Date.now() * 1000 + Math.floor(Math.random() * 999);
+
+        // =====================================================
+        // Global state
+        // =====================================================
         let currentProduct = null;
-        let financingConfig = null;
+        let financingConfig = { monto_inicial: 10, numero_cuotas: 2, dias_cuota: 15 };
         let allProducts = [];
         let currentFilter = 'all';
         let currentPage = 1;
-        const productsPerPage = 15;
+        const productsPerPage = 12;
 
-        // Size mapping from database categories to display names
         const sizeMapping = {
             'sabanas': 'Individual',
             'cubrecamas': 'Matrimonial',
@@ -654,310 +434,208 @@
             'fundas': 'King'
         };
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        // =====================================================
+        // Init
+        // =====================================================
+        document.addEventListener('DOMContentLoaded', () => {
             loadProducts();
             loadFinancingConfig();
             setupEventListeners();
         });
 
-        // Setup event listeners
         function setupEventListeners() {
-            // Payment type selection
             document.querySelectorAll('input[name="paymentType"]').forEach(radio => {
                 radio.addEventListener('change', function() {
-                    document.querySelectorAll('.payment-option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
+                    document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
                     this.closest('.payment-option').classList.add('selected');
-                    
-                    if (this.value === 'financing') {
-                        showFinancingDetails();
-                    } else {
-                        hideFinancingDetails();
-                    }
+                    if (this.value === 'financing') showFinancingDetails();
+                    else hideFinancingDetails();
                 });
             });
 
-            // Confirm purchase button
             document.getElementById('confirmPurchase').addEventListener('click', processPurchase);
 
-            // WhatsApp input formatting
             document.getElementById('whatsapp').addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 0 && !value.startsWith('58')) {
-                    value = '58' + value;
-                }
-                if (value.length >= 4) {
-                    value = '+' + value.slice(0, 3) + ' ' + value.slice(3);
-                }
-                e.target.value = value;
+                let v = e.target.value.replace(/\D/g, '');
+                if (v.length > 0 && !v.startsWith('58')) v = '58' + v;
+                if (v.length >= 4) v = '+' + v.slice(0, 3) + ' ' + v.slice(3);
+                e.target.value = v;
             });
 
-            // Auto-format text inputs
-            setupTextFormatting();
-        }
-
-        // Setup text formatting for form inputs
-        function setupTextFormatting() {
-            // Format first letter uppercase for name and last name
             document.getElementById('firstName').addEventListener('input', function(e) {
-                let value = e.target.value;
-                if (value.length > 0) {
-                    e.target.value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-                }
+                const v = e.target.value;
+                if (v) e.target.value = v.charAt(0).toUpperCase() + v.slice(1).toLowerCase();
             });
-
             document.getElementById('lastName').addEventListener('input', function(e) {
-                let value = e.target.value;
-                if (value.length > 0) {
-                    e.target.value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-                }
+                const v = e.target.value;
+                if (v) e.target.value = v.charAt(0).toUpperCase() + v.slice(1).toLowerCase();
             });
-
-            // Format uppercase for building and apartment
-            document.getElementById('building').addEventListener('input', function(e) {
-                e.target.value = e.target.value.toUpperCase();
-            });
-
-            document.getElementById('apartment').addEventListener('input', function(e) {
-                e.target.value = e.target.value.toUpperCase();
-            });
+            document.getElementById('building').addEventListener('input', e => e.target.value = e.target.value.toUpperCase());
+            document.getElementById('apartment').addEventListener('input', e => e.target.value = e.target.value.toUpperCase());
         }
 
-        // Filter products by size
-        function filterBySize(size) {
-            currentFilter = size;
-            currentPage = 1; // Reset to first page when filtering
-            
-            // Update active button
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Filter and display products
-            displayProducts();
-        }
-
-        // Load products from Supabase
+        // =====================================================
+        // Load products from JSONBin
+        // =====================================================
         async function loadProducts() {
             try {
                 document.getElementById('loadingSpinner').style.display = 'block';
-                
-                // Load all products (both active and inactive/sold)
-                const { data: products, error } = await supabase
-                    .from('productos')
-                    .select('*')
-                    .order('nombre');
-
-                if (error) throw error;
-
-                allProducts = products || [];
+                document.getElementById('productsContainer').innerHTML = '';
+                const rec = await DB.get('productos');
+                allProducts = (rec.productos || []).sort((a, b) => a.nombre.localeCompare(b.nombre));
                 displayProducts();
                 document.getElementById('loadingSpinner').style.display = 'none';
-            } catch (error) {
-                console.error('Error loading products:', error);
-                document.getElementById('loadingSpinner').innerHTML = 
-                    '<p class="text-danger">Error al cargar los productos. Por favor, recargue la página.</p>';
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loadingSpinner').innerHTML =
+                    '<p class="text-danger small">Error al cargar. Recargue la página.</p>';
             }
         }
 
-        // Display products with pagination
+        // =====================================================
+        // Load financing config from JSONBin
+        // =====================================================
+        async function loadFinancingConfig() {
+            try {
+                const rec = await DB.get('config');
+                financingConfig = rec.configuracion?.financiamiento || { monto_inicial: 10, numero_cuotas: 2, dias_cuota: 15 };
+            } catch {
+                financingConfig = { monto_inicial: 10, numero_cuotas: 2, dias_cuota: 15 };
+            }
+        }
+
+        // =====================================================
+        // Filter
+        // =====================================================
+        function filterBySize(size, el) {
+            currentFilter = size;
+            currentPage = 1;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            displayProducts();
+        }
+
+        // =====================================================
+        // Display products
+        // =====================================================
         function displayProducts() {
             const container = document.getElementById('productsContainer');
-            
-            // Filter products
-            const filteredProducts = currentFilter === 'all' 
-                ? allProducts 
-                : allProducts.filter(product => product.categoria === currentFilter);
-            
-            // Calculate pagination
-            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-            const startIndex = (currentPage - 1) * productsPerPage;
-            const endIndex = startIndex + productsPerPage;
-            const productsToShow = filteredProducts.slice(startIndex, endIndex);
+            const filtered = currentFilter === 'all'
+                ? allProducts
+                : allProducts.filter(p => p.categoria === currentFilter);
 
-            if (productsToShow.length === 0) {
+            const totalPages = Math.ceil(filtered.length / productsPerPage);
+            const start = (currentPage - 1) * productsPerPage;
+            const toShow = filtered.slice(start, start + productsPerPage);
+
+            if (toShow.length === 0) {
                 container.innerHTML = `
-                    <div class="col-12">
-                        <div class="no-products">
-                            <i class="bi bi-inbox"></i>
-                            <h5>No hay productos disponibles</h5>
-                            <p class="text-muted">Intenta con otra categoría</p>
-                        </div>
-                    </div>
-                `;
+                    <div class="col-12 no-products">
+                        <i class="bi bi-inbox"></i>
+                        <p>No hay productos disponibles</p>
+                        <small class="text-muted">Prueba otra categoría</small>
+                    </div>`;
             } else {
                 container.innerHTML = '';
-                productsToShow.forEach(product => {
-                    const isSold = !product.activo; // Changed logic: inactive = sold
+                toShow.forEach(product => {
+                    const isSold = !product.activo;
                     const sizeName = sizeMapping[product.categoria] || product.categoria;
-
-                    const productCard = `
-                        <div class="col-md-6 col-lg-4">
+                    const nameEscaped = product.nombre.replace(/'/g, "\\'");
+                    container.innerHTML += `
+                        <div class="col-6 col-md-4 col-lg-3">
                             <div class="product-card">
                                 ${isSold ? '<div class="sold-badge">VENDIDO</div>' : ''}
-                                <img src="${product.imagen || 'https://picsum.photos/seed/lenceria' + product.id + '/400/300'}" 
-                                     alt="${product.nombre}" class="product-image ${isSold ? 'sold' : ''}">
+                                <img src="${product.imagen || 'https://picsum.photos/seed/ls' + product.id + '/400/300'}"
+                                     alt="${product.nombre}" class="product-image ${isSold ? 'sold' : ''}"
+                                     loading="lazy">
                                 <div class="product-body">
-                                    <h5 class="product-title">${product.nombre}</h5>
-                                    <p class="text-muted small">${product.descripcion || ''}</p>
+                                    <div class="product-title">${product.nombre}</div>
+                                    <div class="product-desc">${product.descripcion || ''}</div>
                                     <span class="size-badge">${sizeName}</span>
-                                    <div class="product-price">$${product.precio.toFixed(2)}</div>
-                                    ${isSold ? 
-                                        '<span class="stock-badge stock-low">Producto vendido</span>' : 
-                                        (product.stock > 5 ? 
-                                            '<span class="stock-badge stock-available">Disponible</span>' : 
-                                            `<span class="stock-badge stock-low">¡Solo ${product.stock} disponibles!</span>`)
+                                    <div class="product-price">$${parseFloat(product.precio).toFixed(2)}</div>
+                                    ${isSold
+                                        ? '<span class="stock-badge stock-low">Producto vendido</span>'
+                                        : (product.stock > 5
+                                            ? '<span class="stock-badge stock-available">✓ Disponible</span>'
+                                            : `<span class="stock-badge stock-low">¡Solo ${product.stock}!</span>`)
                                     }
-                                    <button class="btn btn-buy" onclick="openPurchaseModal(${product.id}, '${product.nombre}', ${product.precio})" 
+                                    <button class="btn-buy" onclick="openPurchaseModal(${product.id}, '${nameEscaped}', ${product.precio})"
                                             ${isSold || product.stock <= 0 ? 'disabled' : ''}>
                                         <i class="bi bi-cart-plus"></i> ${isSold ? 'No disponible' : 'Comprar'}
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                    `;
-                    container.innerHTML += productCard;
+                        </div>`;
                 });
             }
-
-            // Update pagination
             updatePagination(totalPages);
         }
 
-        // Update pagination controls
         function updatePagination(totalPages) {
-            const paginationContainer = document.getElementById('paginationContainer');
-            
-            if (totalPages <= 1) {
-                paginationContainer.innerHTML = '';
-                return;
-            }
-
-            let paginationHTML = '<nav><ul class="pagination">';
-            
-            // Previous button
-            if (currentPage > 1) {
-                paginationHTML += `<li class="page-item">
-                    <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">
-                        <i class="bi bi-chevron-left"></i>
-                    </a>
-                </li>`;
-            }
-
-            // Page numbers
+            const pc = document.getElementById('paginationContainer');
+            if (totalPages <= 1) { pc.innerHTML = ''; return; }
+            let html = '<nav><ul class="pagination pagination-sm">';
+            if (currentPage > 1) html += `<li class="page-item"><a class="page-link" href="#" onclick="changePage(${currentPage - 1});return false;"><i class="bi bi-chevron-left"></i></a></li>`;
             for (let i = 1; i <= totalPages; i++) {
                 if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
-                    paginationHTML += `<li class="page-item ${i === currentPage ? 'active' : ''}">
-                        <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
-                    </li>`;
+                    html += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#" onclick="changePage(${i});return false;">${i}</a></li>`;
                 } else if (i === currentPage - 2 || i === currentPage + 2) {
-                    paginationHTML += `<li class="page-item disabled">
-                        <a class="page-link" href="#">...</a>
-                    </li>`;
+                    html += `<li class="page-item disabled"><a class="page-link">...</a></li>`;
                 }
             }
-
-            // Next button
-            if (currentPage < totalPages) {
-                paginationHTML += `<li class="page-item">
-                    <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">
-                        <i class="bi bi-chevron-right"></i>
-                    </a>
-                </li>`;
-            }
-
-            paginationHTML += '</ul></nav>';
-            paginationContainer.innerHTML = paginationHTML;
+            if (currentPage < totalPages) html += `<li class="page-item"><a class="page-link" href="#" onclick="changePage(${currentPage + 1});return false;"><i class="bi bi-chevron-right"></i></a></li>`;
+            html += '</ul></nav>';
+            pc.innerHTML = html;
         }
 
-        // Change page
         function changePage(page) {
             currentPage = page;
             displayProducts();
-            
-            // Scroll to top of products
-            document.querySelector('.content-section').scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
+            document.querySelector('.content-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Load financing configuration
-        async function loadFinancingConfig() {
-            try {
-                const { data: config, error } = await supabase
-                    .from('configuracion')
-                    .select('*')
-                    .eq('clave', 'financiamiento')
-                    .single();
-
-                if (error && error.code !== 'PGRST116') throw error;
-
-                financingConfig = config ? config.valor : {
-                    monto_inicial: 10,
-                    numero_cuotas: 2,
-                    dias_cuota: 15
-                };
-            } catch (error) {
-                console.error('Error loading financing config:', error);
-                financingConfig = {
-                    monto_inicial: 10,
-                    numero_cuotas: 2,
-                    dias_cuota: 15
-                };
-            }
-        }
-
-        // Open purchase modal
+        // =====================================================
+        // Purchase Modal
+        // =====================================================
         function openPurchaseModal(productId, productName, productPrice) {
-            currentProduct = {
-                id: productId,
-                name: productName,
-                price: productPrice
-            };
-
+            currentProduct = { id: productId, name: productName, price: productPrice };
             document.getElementById('productId').value = productId;
             document.getElementById('productName').value = productName;
             document.getElementById('productPrice').value = productPrice;
-
-            // Reset form
             document.getElementById('purchaseForm').reset();
-            document.querySelectorAll('.payment-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
+            document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
             hideFinancingDetails();
-
-            const modal = new bootstrap.Modal(document.getElementById('purchaseModal'));
-            modal.show();
+            new bootstrap.Modal(document.getElementById('purchaseModal')).show();
         }
 
-        // Show financing details
         function showFinancingDetails() {
             const price = parseFloat(document.getElementById('productPrice').value);
-            const initialAmount = financingConfig.monto_inicial;
-            const remainingAmount = price - initialAmount;
-            const quotaAmount = remainingAmount / financingConfig.numero_cuotas;
-
-            document.getElementById('initialAmount').textContent = `$${initialAmount.toFixed(2)}`;
-            document.getElementById('quota1').textContent = `$${quotaAmount.toFixed(2)}`;
-            document.getElementById('quota2').textContent = `$${quotaAmount.toFixed(2)}`;
-            
+            const init = financingConfig.monto_inicial;
+            const quota = (price - init) / financingConfig.numero_cuotas;
+            document.getElementById('initialAmount').textContent = `$${init.toFixed(2)}`;
+            document.getElementById('quota1').textContent = `$${quota.toFixed(2)}`;
+            document.getElementById('quota2').textContent = `$${quota.toFixed(2)}`;
             document.getElementById('financingDetails').classList.add('show');
         }
 
-        // Hide financing details
         function hideFinancingDetails() {
             document.getElementById('financingDetails').classList.remove('show');
         }
 
-        // Process purchase
+        // =====================================================
+        // Process Purchase → Save to JSONBin
+        // =====================================================
         async function processPurchase() {
-            if (!validateForm()) return;
+            const form = document.getElementById('purchaseForm');
+            if (!form.checkValidity()) { form.reportValidity(); return; }
 
+            const btn = document.getElementById('confirmPurchase');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+
+            const purchaseCode = generatePurchaseCode();
             const formData = {
+                id: uid(),
                 producto_id: currentProduct.id,
                 nombre: document.getElementById('firstName').value,
                 apellido: document.getElementById('lastName').value,
@@ -966,119 +644,83 @@
                 apartamento: document.getElementById('apartment').value,
                 tipo_pago: document.querySelector('input[name="paymentType"]:checked').value,
                 monto_total: currentProduct.price,
-                codigo_compra: generatePurchaseCode()
+                codigo_compra: purchaseCode,
+                estado: 'pendiente',
+                fecha_creacion: new Date().toISOString()
             };
 
             try {
-                // Save purchase to database
-                const { data: purchase, error } = await supabase
-                    .from('compras')
-                    .insert([formData])
-                    .select()
-                    .single();
+                const comprasRec = await DB.get('compras');
+                comprasRec.compras.push(formData);
+                await DB.set('compras', comprasRec);
 
-                if (error) throw error;
-
-                // If financing, create quotas
                 if (formData.tipo_pago === 'financing') {
-                    await createFinancingQuotas(purchase.id, currentProduct.price);
+                    await createFinancingQuotas(formData.id, currentProduct.price);
                 }
 
-                // Update stock
                 await updateStock(currentProduct.id);
-
-                // Redirect to WhatsApp
-                redirectToWhatsApp(formData, purchase.codigo_compra);
-
-            } catch (error) {
-                console.error('Error processing purchase:', error);
-                alert('Error al procesar la compra. Por favor, intente nuevamente.');
+                redirectToWhatsApp(formData, purchaseCode);
+            } catch (err) {
+                console.error(err);
+                alert('Error al procesar la compra. Intente nuevamente.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="bi bi-whatsapp"></i> Confirmar';
             }
         }
 
-        // Validate form
-        function validateForm() {
-            const form = document.getElementById('purchaseForm');
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return false;
-            }
-            return true;
-        }
-
-        // Generate purchase code
         function generatePurchaseCode() {
             return 'LS-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
         }
 
-        // Create financing quotas
         async function createFinancingQuotas(purchaseId, totalAmount) {
-            const initialAmount = financingConfig.monto_inicial;
-            const remainingAmount = totalAmount - initialAmount;
-            const quotaAmount = remainingAmount / financingConfig.numero_cuotas;
-
-            const quotas = [];
+            const init = financingConfig.monto_inicial;
+            const quotaAmount = (totalAmount - init) / financingConfig.numero_cuotas;
+            const rec = await DB.get('cuotas');
             for (let i = 1; i <= financingConfig.numero_cuotas; i++) {
-                const dueDate = new Date();
-                dueDate.setDate(dueDate.getDate() + (financingConfig.dias_cuota * i));
-                
-                quotas.push({
+                const due = new Date();
+                due.setDate(due.getDate() + financingConfig.dias_cuota * i);
+                rec.cuotas.push({
+                    id: uid() + i,
                     compra_id: purchaseId,
                     numero_cuota: i,
+                    numero_cuotas: financingConfig.numero_cuotas,
                     monto: quotaAmount,
-                    fecha_vencimiento: dueDate.toISOString(),
-                    estado: 'pendiente'
+                    fecha_vencimiento: due.toISOString(),
+                    estado: 'pendiente',
+                    pagada: false
                 });
             }
-
-            const { error } = await supabase
-                .from('cuotas')
-                .insert(quotas);
-
-            if (error) throw error;
+            await DB.set('cuotas', rec);
         }
 
-        // Update product stock
         async function updateStock(productId) {
-            const { data: product, error: fetchError } = await supabase
-                .from('productos')
-                .select('stock')
-                .eq('id', productId)
-                .single();
-
-            if (fetchError) throw fetchError;
-
-            const { error: updateError } = await supabase
-                .from('productos')
-                .update({ stock: product.stock - 1 })
-                .eq('id', productId);
-
-            if (updateError) throw updateError;
+            const rec = await DB.get('productos');
+            const product = rec.productos.find(p => p.id == productId);
+            if (product) {
+                product.stock = Math.max(0, product.stock - 1);
+                if (product.stock <= 0) product.activo = false;
+                await DB.set('productos', rec);
+            }
         }
 
-        // Redirect to WhatsApp
         function redirectToWhatsApp(formData, purchaseCode) {
-            const message = encodeURIComponent(
+            const msg = encodeURIComponent(
                 `*NUEVA COMPRA - LenceriaShops*\n\n` +
-                `📋 Código de Compra: ${purchaseCode}\n` +
+                `📋 Código: ${purchaseCode}\n` +
                 `👤 Cliente: ${formData.nombre} ${formData.apellido}\n` +
                 `📱 WhatsApp: ${formData.whatsapp}\n` +
-                `🏢 Dirección: Edificio ${formData.edificio}, Apto ${formData.apartamento}\n` +
+                `🏢 Dirección: Edif. ${formData.edificio}, Apto ${formData.apartamento}\n` +
                 `🛍️ Producto: ${currentProduct.name}\n` +
-                `💰 Monto Total: $${formData.monto_total.toFixed(2)}\n` +
-                `💳 Tipo de Pago: ${formData.tipo_pago === 'financing' ? 'Financiamiento' : 'Pago Completo'}\n\n` +
-                `Por favor, confirme su compra para procesar el envío.`
+                `💰 Total: $${parseFloat(formData.monto_total).toFixed(2)}\n` +
+                `💳 Pago: ${formData.tipo_pago === 'financing' ? 'Financiamiento' : 'Pago Completo'}\n\n` +
+                `Por favor confirme la compra para procesar el envío.`
             );
-
-            window.open(`https://wa.me/584129204453?text=${message}`, '_blank');
-            
-            // Close modal
+            window.open(`https://wa.me/584129204453?text=${msg}`, '_blank');
             bootstrap.Modal.getInstance(document.getElementById('purchaseModal')).hide();
-            
-            // Show success message
             setTimeout(() => {
-                alert('¡Gracias por su compra! Hemos enviado su orden a WhatsApp para confirmación.');
-                loadProducts(); // Reload products to update stock
+                alert('¡Gracias! Tu orden fue enviada a WhatsApp para confirmación.');
+                loadProducts();
             }, 1000);
         }
     </script>
