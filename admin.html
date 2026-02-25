@@ -2,675 +2,515 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Administrativo - LenceriaShops</title>
-    
-    <!-- Favicon and App Icons -->
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    
-    <!-- Mobile App Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin - LenceriaShops</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="LenceriaShops Admin">
-    <meta name="application-name" content="LenceriaShops Admin">
-    <meta name="msapplication-TileColor" content="#d4a574">
-    <meta name="msapplication-TileImage" content="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    
+    <meta name="theme-color" content="#d4a574">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary-color: #d4a574;
-            --secondary-color: #f5e6d3;
-            --dark-color: #2c1810;
-            --light-bg: #faf8f5;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
+            --primary: #d4a574;
+            --secondary: #f5e6d3;
+            --dark: #2c1810;
+            --bg: #faf8f5;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--dark-color);
-            display: flex;
-            flex-direction: column;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
             min-height: 100vh;
         }
 
-        .main-wrapper {
-            display: flex;
-            flex: 1;
-        }
-
+        /* ── Sidebar (desktop) ── */
         .sidebar {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             height: 100vh;
-            width: 250px;
-            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
-            padding: 20px;
+            width: 220px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            padding: 16px;
             z-index: 1000;
-            transition: all 0.3s ease;
+            overflow-y: auto;
+            transition: transform 0.3s;
         }
-
-        .sidebar-header {
-            color: white;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .sidebar-header h3 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .nav-menu {
-            list-style: none;
-            padding: 0;
-        }
-
-        .nav-menu li {
-            margin-bottom: 10px;
-        }
-
+        .sidebar-header { color: white; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.25); }
+        .sidebar-header h3 { font-size: 1.1rem; font-weight: 500; letter-spacing: 1px; }
+        .sidebar-header small { font-size: 0.72rem; opacity: 0.85; }
+        .nav-menu { list-style: none; padding: 0; }
+        .nav-menu li { margin-bottom: 4px; }
         .nav-menu a {
             color: white;
             text-decoration: none;
-            padding: 12px 15px;
+            padding: 9px 12px;
             display: flex;
             align-items: center;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+            cursor: pointer;
         }
+        .nav-menu a:hover, .nav-menu a.active { background: rgba(255,255,255,0.22); }
+        .nav-menu i { margin-right: 8px; font-size: 1rem; }
 
-        .nav-menu a:hover, .nav-menu a.active {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .nav-menu i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
+        /* ── Main content ── */
         .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+            margin-left: 220px;
+            padding: 16px;
+            min-height: 100vh;
+            padding-bottom: 30px;
         }
-
         .content-header {
             background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
+        .content-header h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 2px; }
+        .content-header p { font-size: 0.78rem; color: #888; margin: 0; }
+        .content-section { display: none; animation: fadeIn 0.25s ease; }
+        .content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-        .content-section {
-            display: none;
-            animation: fadeIn 0.3s ease;
-            flex: 1;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            border: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
+        /* ── Cards ── */
+        .card { background: white; border-radius: 12px; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 16px; }
         .card-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border-radius: 15px 15px 0 0 !important;
-            padding: 15px 20px;
+            border-radius: 12px 12px 0 0 !important;
+            padding: 10px 16px;
+            font-size: 0.9rem;
             font-weight: 500;
         }
+        .card-body { padding: 14px; }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212,165,116,0.3);
-        }
-
-        .table {
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .table thead {
-            background: var(--light-bg);
-        }
-
-        .status-badge {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .status-pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .status-paid {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .status-overdue {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .status-sold {
-            background: #dc3545;
-            color: white;
-        }
-
-        .form-control, .form-select {
-            border-radius: 10px;
-            border: 1px solid #e0e0e0;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(212,165,116,0.25);
-        }
-
+        /* ── Stats ── */
         .stats-card {
             background: white;
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 14px 10px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
         }
+        .stats-card i { font-size: 1.8rem; color: var(--primary); display: block; margin-bottom: 4px; }
+        .stats-card h3 { font-size: 1.5rem; font-weight: 700; color: var(--dark); margin: 0 0 2px; }
+        .stats-card p { font-size: 0.72rem; color: #888; margin: 0; }
 
-        .stats-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .stats-card i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .stats-card h3 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--dark-color);
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1001;
-            background: var(--primary-color);
-            color: white;
+        /* ── Buttons ── */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
-            border-radius: 10px;
-            padding: 10px 15px;
-            font-size: 1.5rem;
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 0.82rem;
+            color: white;
         }
+        .btn-primary:hover { opacity: 0.9; color: white; }
+        .btn-sm { padding: 4px 8px; font-size: 0.75rem; border-radius: 6px; }
 
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
+        /* ── Tables ── */
+        .table { font-size: 0.8rem; }
+        .table th { font-size: 0.75rem; font-weight: 600; background: var(--bg); padding: 8px 10px; }
+        .table td { padding: 7px 10px; vertical-align: middle; }
 
-            .sidebar.show {
-                transform: translateX(0);
-            }
+        /* ── Badges ── */
+        .status-badge { padding: 3px 8px; border-radius: 15px; font-size: 0.72rem; font-weight: 500; display: inline-block; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-paid { background: #d4edda; color: #155724; }
+        .status-overdue { background: #f8d7da; color: #721c24; }
+        .status-sold { background: #dc3545; color: white; }
 
-            .main-content {
-                margin-left: 0;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
+        /* ── Forms ── */
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 0.85rem;
+            padding: 7px 10px;
         }
+        .form-control:focus, .form-select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(212,165,116,0.18); }
+        .form-label { font-size: 0.8rem; font-weight: 500; margin-bottom: 3px; }
 
-        .product-image-preview {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
+        /* ── Config section ── */
+        .config-section { background: #f8f9fa; border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+        .config-section h5 { font-size: 0.95rem; margin-bottom: 12px; }
 
-        .config-section {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .whatsapp-message {
-            background: #e8f5e9;
-            border-left: 4px solid var(--success-color);
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-            white-space: pre-wrap;
-        }
-
+        /* ── Image upload ── */
         .image-upload-area {
             border: 2px dashed #e0e0e0;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 8px;
+            padding: 16px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
             background: #fafafa;
+            transition: border-color 0.2s;
+            font-size: 0.82rem;
         }
+        .image-upload-area:hover { border-color: var(--primary); }
+        .image-upload-area i { font-size: 2rem; color: #aaa; display: block; margin-bottom: 6px; }
+        .image-preview { max-width: 150px; max-height: 150px; border-radius: 8px; }
+        .upload-progress { display: none; margin-top: 8px; }
 
-        .image-upload-area:hover {
-            border-color: var(--primary-color);
-            background: #f5f5f5;
-        }
-
-        .image-upload-area.dragover {
-            border-color: var(--primary-color);
-            background: rgba(212,165,116,0.1);
-        }
-
-        .upload-progress {
-            display: none;
-            margin-top: 10px;
-        }
-
-        .image-preview-container {
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        .image-preview {
-            max-width: 200px;
-            max-height: 200px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .size-badge {
-            background: var(--secondary-color);
-            color: var(--dark-color);
-            padding: 3px 8px;
-            border-radius: 10px;
+        /* ── WhatsApp msg ── */
+        .whatsapp-message {
+            background: #e8f5e9;
+            border-left: 3px solid #28a745;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-top: 8px;
             font-size: 0.8rem;
-            font-weight: 500;
         }
 
+        /* ── Modal ── */
+        .modal-content { border-radius: 14px; border: none; }
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 14px 14px 0 0;
+            padding: 12px 16px;
+        }
+        .modal-body { padding: 14px; }
+        .modal-footer { padding: 10px 14px; }
+
+        /* ── Footer ── */
         .footer {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             text-align: center;
-            padding: 15px 0;
-            margin-top: auto;
+            padding: 10px 0;
+            font-size: 0.72rem;
         }
+        .footer a { color: white; text-decoration: none; }
 
-        .footer small {
-            font-size: 0.8rem;
+        /* ── Mobile bottom nav ── */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            z-index: 1001;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+            padding: 4px 0 6px;
         }
-
-        .footer a {
+        .mobile-bottom-nav-inner {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .mob-nav-btn {
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            transition: background 0.2s;
+            min-width: 52px;
         }
+        .mob-nav-btn i { font-size: 1.25rem; }
+        .mob-nav-btn span { font-size: 0.6rem; white-space: nowrap; }
+        .mob-nav-btn.active { background: rgba(255,255,255,0.25); }
+        .mob-nav-btn:active { background: rgba(255,255,255,0.35); }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ── Sidebar overlay (mobile) ── */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+        }
+        .sidebar-overlay.show { display: block; }
+
+        /* ── Mobile adjustments ── */
+        @media (max-width: 767px) {
+            .sidebar { transform: translateX(-100%); width: 200px; }
+            .sidebar.show { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 10px; padding-bottom: 80px; }
+            .mobile-bottom-nav { display: block; }
+            .content-header { padding: 10px 12px; margin-bottom: 12px; }
+            .content-header h2 { font-size: 1rem; }
+            .stats-card { padding: 10px 6px; }
+            .stats-card i { font-size: 1.5rem; }
+            .stats-card h3 { font-size: 1.2rem; }
+            .table { font-size: 0.75rem; }
+            .table th, .table td { padding: 6px 8px; }
+            .btn-sm { padding: 3px 6px; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" onclick="toggleSidebar()">
-        <i class="bi bi-list"></i>
-    </button>
 
-    <div class="main-wrapper">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h3><i class="bi bi-shop"></i> LenceriaShops</h3>
-                <small>Panel Administrativo</small>
-            </div>
-            <ul class="nav-menu">
-                <li>
-                    <a href="#" class="nav-link active" onclick="showSection('dashboard')">
-                        <i class="bi bi-speedometer2"></i> Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link" onclick="showSection('products')">
-                        <i class="bi bi-box-seam"></i> Productos
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link" onclick="showSection('orders')">
-                        <i class="bi bi-receipt"></i> Pedidos
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link" onclick="showSection('financing')">
-                        <i class="bi bi-credit-card"></i> Financiamiento
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link" onclick="showSection('config')">
-                        <i class="bi bi-gear"></i> Configuración
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html" class="nav-link">
-                        <i class="bi bi-house"></i> Ver Tienda
-                    </a>
-                </li>
-            </ul>
-        </aside>
+    <!-- Sidebar overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard Section -->
-            <section id="dashboard" class="content-section active">
-                <div class="content-header">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="bi bi-shop"></i> LenceriaShops</h3>
+            <small>Panel Administrativo</small>
+        </div>
+        <ul class="nav-menu">
+            <li><a class="nav-link active" onclick="showSection('dashboard')"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+            <li><a class="nav-link" onclick="showSection('products')"><i class="bi bi-box-seam"></i> Productos</a></li>
+            <li><a class="nav-link" onclick="showSection('orders')"><i class="bi bi-receipt"></i> Pedidos</a></li>
+            <li><a class="nav-link" onclick="showSection('financing')"><i class="bi bi-credit-card"></i> Financiamiento</a></li>
+            <li><a class="nav-link" onclick="showSection('config')"><i class="bi bi-gear"></i> Configuración</a></li>
+            <li><a href="index.html"><i class="bi bi-house"></i> Ver Tienda</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="content-section active">
+            <div class="content-header d-flex justify-content-between align-items-center">
+                <div>
                     <h2>Dashboard</h2>
-                    <p class="text-muted mb-0">Resumen general del sistema</p>
+                    <p>Resumen general</p>
                 </div>
-
-                <div class="row mb-4">
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="stats-card">
-                            <i class="bi bi-box-seam"></i>
-                            <h3 id="totalProducts">0</h3>
-                            <p class="text-muted">Productos</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="stats-card">
-                            <i class="bi bi-receipt"></i>
-                            <h3 id="totalOrders">0</h3>
-                            <p class="text-muted">Pedidos</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="stats-card">
-                            <i class="bi bi-credit-card"></i>
-                            <h3 id="pendingPayments">0</h3>
-                            <p class="text-muted">Pagos Pendientes</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 mb-3">
-                        <div class="stats-card">
-                            <i class="bi bi-currency-dollar"></i>
-                            <h3 id="totalRevenue">$0</h3>
-                            <p class="text-muted">Ingresos Totales</p>
-                        </div>
+                <button class="btn btn-sm d-md-none" style="background:var(--primary);color:white;border:none;border-radius:8px;" onclick="toggleSidebar()">
+                    <i class="bi bi-list fs-5"></i>
+                </button>
+            </div>
+            <div class="row g-2 mb-3">
+                <div class="col-6 col-md-3">
+                    <div class="stats-card">
+                        <i class="bi bi-box-seam"></i>
+                        <h3 id="totalProducts">0</h3>
+                        <p>Productos</p>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0">Pedidos Recientes</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Cliente</th>
-                                        <th>Producto</th>
-                                        <th>Monto</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="recentOrdersTable">
-                                    <!-- Orders will be loaded here -->
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="col-6 col-md-3">
+                    <div class="stats-card">
+                        <i class="bi bi-receipt"></i>
+                        <h3 id="totalOrders">0</h3>
+                        <p>Pedidos</p>
                     </div>
                 </div>
-            </section>
-
-            <!-- Products Section -->
-            <section id="products" class="content-section">
-                <div class="content-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h2>Gestión de Productos</h2>
-                            <p class="text-muted mb-0">Administra el catálogo de productos</p>
-                        </div>
-                        <button class="btn btn-primary" onclick="openProductModal()">
-                            <i class="bi bi-plus-circle"></i> Nuevo Producto
-                        </button>
+                <div class="col-6 col-md-3">
+                    <div class="stats-card">
+                        <i class="bi bi-credit-card"></i>
+                        <h3 id="pendingPayments">0</h3>
+                        <p>Cuotas Pend.</p>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Descripción</th>
-                                        <th>Tamaño</th>
-                                        <th>Precio</th>
-                                        <th>Stock</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="productsTable">
-                                    <!-- Products will be loaded here -->
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="col-6 col-md-3">
+                    <div class="stats-card">
+                        <i class="bi bi-currency-dollar"></i>
+                        <h3 id="totalRevenue">$0</h3>
+                        <p>Ingresos</p>
                     </div>
                 </div>
-            </section>
-
-            <!-- Orders Section -->
-            <section id="orders" class="content-section">
-                <div class="content-header">
-                    <h2>Gestión de Pedidos</h2>
-                    <p class="text-muted mb-0">Verifica y gestiona los pedidos de clientes</p>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Fecha</th>
-                                        <th>Cliente</th>
-                                        <th>WhatsApp</th>
-                                        <th>Producto</th>
-                                        <th>Monto</th>
-                                        <th>Tipo Pago</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="ordersTable">
-                                    <!-- Orders will be loaded here -->
-                                </tbody>
-                            </table>
-                        </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Pedidos Recientes</div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead><tr>
+                                <th>Código</th>
+                                <th>Cliente</th>
+                                <th>Producto</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                                <th></th>
+                            </tr></thead>
+                            <tbody id="recentOrdersTable"></tbody>
+                        </table>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Financing Section -->
-            <section id="financing" class="content-section">
-                <div class="content-header">
-                    <h2>Gestión de Financiamiento</h2>
-                    <p class="text-muted mb-0">Controla las cuotas y pagos financiados</p>
+        <!-- PRODUCTS -->
+        <section id="products" class="content-section">
+            <div class="content-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h2>Productos</h2>
+                    <p>Gestiona el catálogo</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0">Cuotas Pendientes</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Código Compra</th>
-                                        <th>Cliente</th>
-                                        <th>Cuota</th>
-                                        <th>Monto</th>
-                                        <th>Fecha Vencimiento</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="quotasTable">
-                                    <!-- Quotas will be loaded here -->
-                                </tbody>
-                            </table>
-                        </div>
+                <button class="btn btn-primary btn-sm" onclick="openProductModal()">
+                    <i class="bi bi-plus-circle"></i> Nuevo
+                </button>
+            </div>
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead><tr>
+                                <th>Img</th>
+                                <th>Nombre</th>
+                                <th>Tamaño</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Estado</th>
+                                <th>Acc.</th>
+                            </tr></thead>
+                            <tbody id="productsTable"></tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="card mt-4">
-                    <div class="card-header">
-                        <h5 class="mb-0">Enviar Recordatorios</h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-muted">Selecciona las cuotas vencidas para enviar recordatorios automáticos</p>
-                        <button class="btn btn-warning" onclick="sendReminders()">
-                            <i class="bi bi-bell"></i> Enviar Recordatorios Masivos
-                        </button>
-                        <div id="reminderMessages" class="mt-3"></div>
+        <!-- ORDERS -->
+        <section id="orders" class="content-section">
+            <div class="content-header">
+                <h2>Pedidos</h2>
+                <p>Verifica y gestiona pedidos</p>
+            </div>
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead><tr>
+                                <th>Código</th>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>WA</th>
+                                <th>Producto</th>
+                                <th>Monto</th>
+                                <th>Pago</th>
+                                <th>Estado</th>
+                                <th>Acc.</th>
+                            </tr></thead>
+                            <tbody id="ordersTable"></tbody>
+                        </table>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Configuration Section -->
-            <section id="config" class="content-section">
-                <div class="content-header">
-                    <h2>Configuración del Sistema</h2>
-                    <p class="text-muted mb-0">Ajusta los parámetros del financiamiento y otros valores</p>
+        <!-- FINANCING -->
+        <section id="financing" class="content-section">
+            <div class="content-header">
+                <h2>Financiamiento</h2>
+                <p>Cuotas y pagos financiados</p>
+            </div>
+            <div class="card">
+                <div class="card-header">Cuotas Pendientes</div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead><tr>
+                                <th>Código</th>
+                                <th>Cliente</th>
+                                <th>Cuota</th>
+                                <th>Monto</th>
+                                <th>Vence</th>
+                                <th>Estado</th>
+                                <th>Acc.</th>
+                            </tr></thead>
+                            <tbody id="quotasTable"></tbody>
+                        </table>
+                    </div>
                 </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header">Recordatorios</div>
+                <div class="card-body">
+                    <p class="text-muted small mb-2">Envía recordatorios a todas las cuotas vencidas</p>
+                    <button class="btn btn-warning btn-sm" onclick="sendReminders()">
+                        <i class="bi bi-bell"></i> Enviar Recordatorios Masivos
+                    </button>
+                    <div id="reminderMessages" class="mt-2"></div>
+                </div>
+            </div>
+        </section>
 
-                <div class="card">
-                    <div class="card-body">
-                        <div class="config-section">
-                            <h5>Configuración de Financiamiento</h5>
-                            <form id="financingConfigForm">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="form-label">Monto Inicial ($) *</label>
-                                        <input type="number" class="form-control" id="initialAmount" min="1" step="0.01" value="10" required>
-                                        <small class="text-muted">Monto fijo para el pago inicial de cada producto</small>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label">Número de Cuotas</label>
-                                        <input type="number" class="form-control" id="numQuotas" min="2" max="12" value="2">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label">Días entre Cuotas</label>
-                                        <input type="number" class="form-control" id="daysBetweenQuotas" min="7" max="30" value="15">
-                                    </div>
+        <!-- CONFIG -->
+        <section id="config" class="content-section">
+            <div class="content-header">
+                <h2>Configuración</h2>
+                <p>Parámetros del sistema</p>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="config-section">
+                        <h5>Financiamiento</h5>
+                        <form id="financingConfigForm">
+                            <div class="row g-2">
+                                <div class="col-md-4">
+                                    <label class="form-label">Monto Inicial ($)</label>
+                                    <input type="number" class="form-control" id="initialAmount" min="1" step="0.01" value="10" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-3">
-                                    <i class="bi bi-save"></i> Guardar Configuración
-                                </button>
-                            </form>
-                        </div>
-
-                        <div class="config-section">
-                            <h5>Información de Contacto</h5>
-                            <form id="contactConfigForm">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="form-label">WhatsApp de Ventas</label>
-                                        <input type="tel" class="form-control" id="salesWhatsApp" value="+584129204453">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Email de Soporte</label>
-                                        <input type="email" class="form-control" id="supportEmail" placeholder="soporte@lenceriashops.com">
-                                    </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Número de Cuotas</label>
+                                    <input type="number" class="form-control" id="numQuotas" min="2" max="12" value="2">
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-3">
-                                    <i class="bi bi-save"></i> Guardar Contacto
-                                </button>
-                            </form>
-                        </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Días entre Cuotas</label>
+                                    <input type="number" class="form-control" id="daysBetweenQuotas" min="7" max="30" value="15">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm mt-3">
+                                <i class="bi bi-save"></i> Guardar
+                            </button>
+                        </form>
+                    </div>
+                    <div class="config-section">
+                        <h5>Contacto</h5>
+                        <form id="contactConfigForm">
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">WhatsApp de Ventas</label>
+                                    <input type="tel" class="form-control" id="salesWhatsApp" value="+584129204453">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email de Soporte</label>
+                                    <input type="email" class="form-control" id="supportEmail" placeholder="soporte@lenceriashops.com">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm mt-3">
+                                <i class="bi bi-save"></i> Guardar
+                            </button>
+                        </form>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Footer -->
-            <footer class="footer">
-                <div class="container">
-                    <small>&copy; 2024 LenceriaShops | Powered by: <a href="https://www.instagram.com/inkgstar" target="_blank">gstarINK</a></small>
-                </div>
-            </footer>
-        </main>
-    </div>
+        <footer class="footer mt-3">
+            <small>&copy; 2024 LenceriaShops | <a href="https://www.instagram.com/inkgstar" target="_blank">gstarINK</a></small>
+        </footer>
+    </main>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-bottom-nav">
+        <div class="mobile-bottom-nav-inner">
+            <button class="mob-nav-btn active" id="mnav-dashboard" onclick="showSection('dashboard')">
+                <i class="bi bi-speedometer2"></i><span>Inicio</span>
+            </button>
+            <button class="mob-nav-btn" id="mnav-products" onclick="showSection('products')">
+                <i class="bi bi-box-seam"></i><span>Productos</span>
+            </button>
+            <button class="mob-nav-btn" id="mnav-orders" onclick="showSection('orders')">
+                <i class="bi bi-receipt"></i><span>Pedidos</span>
+            </button>
+            <button class="mob-nav-btn" id="mnav-financing" onclick="showSection('financing')">
+                <i class="bi bi-credit-card"></i><span>Cuotas</span>
+            </button>
+            <button class="mob-nav-btn" id="mnav-config" onclick="showSection('config')">
+                <i class="bi bi-gear"></i><span>Config</span>
+            </button>
+        </div>
+    </nav>
 
     <!-- Product Modal -->
     <div class="modal fade" id="productModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="productModalTitle">Nuevo Producto</h5>
@@ -679,9 +519,9 @@
                 <div class="modal-body">
                     <form id="productForm">
                         <input type="hidden" id="productId">
-                        <div class="row">
+                        <div class="row g-2">
                             <div class="col-md-6">
-                                <label class="form-label">Nombre del Producto *</label>
+                                <label class="form-label">Nombre *</label>
                                 <input type="text" class="form-control" id="productName" required>
                             </div>
                             <div class="col-md-6">
@@ -692,23 +532,22 @@
                                     <option value="almohadas">Queen</option>
                                     <option value="fundas">King</option>
                                 </select>
-                                <small class="text-muted">Tamaño del producto</small>
                             </div>
                         </div>
-                        <div class="mt-3">
+                        <div class="mt-2">
                             <label class="form-label">Descripción</label>
-                            <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                            <textarea class="form-control" id="productDescription" rows="2"></textarea>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-4">
+                        <div class="row g-2 mt-1">
+                            <div class="col-4">
                                 <label class="form-label">Precio *</label>
                                 <input type="number" class="form-control" id="productPrice" step="0.01" min="0" required>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Stock *</label>
                                 <input type="number" class="form-control" id="productStock" min="0" required>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Estado</label>
                                 <select class="form-select" id="productStatus">
                                     <option value="true">Activo</option>
@@ -716,26 +555,25 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="mt-3">
+                        <div class="mt-2">
                             <label class="form-label">Imagen del Producto</label>
                             <div class="image-upload-area" id="imageUploadArea" onclick="document.getElementById('imageInput').click()">
-                                <i class="bi bi-cloud-upload" style="font-size: 3rem; color: #6c757d;"></i>
-                                <p class="mt-2 mb-0">Haz clic para subir imagen o arrastra aquí</p>
-                                <small class="text-muted">Formatos: JPG, PNG, GIF (Máx. 5MB)</small>
-                                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                                <i class="bi bi-cloud-upload"></i>
+                                <p class="mb-0">Clic para subir imagen</p>
+                                <small class="text-muted">JPG, PNG (Máx. 5MB)</small>
+                                <input type="file" id="imageInput" accept="image/*" style="display:none">
                             </div>
                             <div class="upload-progress" id="uploadProgress">
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                                         role="progressbar" style="width: 0%" id="progressBar"></div>
+                                <div class="progress" style="height:6px">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressBar" style="width:0%"></div>
                                 </div>
-                                <small class="text-muted">Subiendo imagen...</small>
+                                <small class="text-muted">Subiendo...</small>
                             </div>
-                            <div class="image-preview-container" id="imagePreviewContainer" style="display: none;">
+                            <div class="image-preview-container mt-2 text-center" id="imagePreviewContainer" style="display:none">
                                 <img id="imagePreview" class="image-preview" alt="Vista previa">
                                 <br>
-                                <button type="button" class="btn btn-sm btn-outline-danger mt-2" onclick="removeImage()">
-                                    <i class="bi bi-trash"></i> Eliminar imagen
+                                <button type="button" class="btn btn-sm btn-outline-danger mt-1" onclick="removeImage()">
+                                    <i class="bi bi-trash"></i> Eliminar
                                 </button>
                             </div>
                             <input type="hidden" id="productImage">
@@ -743,34 +581,52 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="saveProduct()">Guardar Producto</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="saveProduct()">
+                        <i class="bi bi-save"></i> Guardar
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Supabase configuration
-        const supabaseUrl = 'https://ahcmnlibucwylgnotovj.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoY21ubGlidWN3eWxnbm90b3ZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM1ODY1NDcsImV4cCI6MjA3OTE2MjU0N30.1S7ZO2IdrsPoYBEEPK6z5_t4qVvkdc4cqNRjPhqtHuE';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        // =====================================================
+        // JSONBin.io Configuration
+        // REEMPLAZA los IDs de los bins con los tuyos
+        // =====================================================
+        const DB = {
+            key: '$2a$10$.8.yyKcPSDxyqhB3HXGfRO0vfwIxCo/nKu18i.U8/N78AauRqJhre',
+            bins: {
+                productos:  '699e7bf7d0ea881f40d6e62e',   // ← reemplaza
+                compras:    '699e7bd143b1c97be99b7d65',     // ← reemplaza
+                cuotas:     '699e7be4d0ea881f40d6e603',      // ← reemplaza
+                config:     '699e7bf7d0ea881f40d6e62e'        // ← reemplaza
+            },
+            baseUrl: 'https://api.jsonbin.io/v3/b',
+            async get(bin) {
+                const r = await fetch(`${this.baseUrl}/${this.bins[bin]}/latest`, {
+                    headers: { 'X-Master-Key': this.key }
+                });
+                if (!r.ok) throw new Error('Error leyendo ' + bin);
+                return (await r.json()).record;
+            },
+            async set(bin, data) {
+                const r = await fetch(`${this.baseUrl}/${this.bins[bin]}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', 'X-Master-Key': this.key },
+                    body: JSON.stringify(data)
+                });
+                if (!r.ok) throw new Error('Error escribiendo ' + bin);
+                return (await r.json()).record;
+            }
+        };
 
-        // ImgBB API configuration
+        const uid = () => Date.now() * 1000 + Math.floor(Math.random() * 999);
+
         const imgbbApiKey = '176862903123d1f89cd3223a4d330174';
 
-        // Global variables
-        let currentSection = 'dashboard';
-        let financingConfig = {
-            monto_inicial: 10,
-            numero_cuotas: 2,
-            dias_cuota: 15
-        };
-        let uploadedImageUrl = null;
-
-        // Size mapping from database categories to display names
         const sizeMapping = {
             'sabanas': 'Individual',
             'cubrecamas': 'Matrimonial',
@@ -778,17 +634,21 @@
             'fundas': 'King'
         };
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        let currentSection = 'dashboard';
+        let financingConfig = { monto_inicial: 10, numero_cuotas: 2, dias_cuota: 15 };
+        let uploadedImageUrl = null;
+
+        // =====================================================
+        // Init
+        // =====================================================
+        document.addEventListener('DOMContentLoaded', () => {
             loadDashboardData();
-            setupEventListeners();
             loadConfiguration();
+            setupEventListeners();
             setupImageUpload();
         });
 
-        // Setup event listeners
         function setupEventListeners() {
-            // Navigation
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -796,339 +656,187 @@
                     this.classList.add('active');
                 });
             });
-
-            // Product form
-            document.getElementById('productForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                saveProduct();
-            });
-
-            // Financing config form
-            document.getElementById('financingConfigForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                saveFinancingConfig();
-            });
-
-            // Contact config form
-            document.getElementById('contactConfigForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                saveContactConfig();
-            });
+            document.getElementById('productForm').addEventListener('submit', e => { e.preventDefault(); saveProduct(); });
+            document.getElementById('financingConfigForm').addEventListener('submit', e => { e.preventDefault(); saveFinancingConfig(); });
+            document.getElementById('contactConfigForm').addEventListener('submit', e => { e.preventDefault(); saveContactConfig(); });
         }
 
-        // Setup image upload functionality
-        function setupImageUpload() {
-            const imageInput = document.getElementById('imageInput');
-            const uploadArea = document.getElementById('imageUploadArea');
-            
-            // File input change
-            imageInput.addEventListener('change', handleImageSelect);
-            
-            // Drag and drop
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.classList.add('dragover');
-            });
-            
-            uploadArea.addEventListener('dragleave', () => {
-                uploadArea.classList.remove('dragover');
-            });
-            
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadArea.classList.remove('dragover');
-                
-                const files = e.dataTransfer.files;
-                if (files.length > 0) {
-                    handleImageFile(files[0]);
-                }
-            });
-        }
-
-        // Handle image selection
-        function handleImageSelect(e) {
-            const file = e.target.files[0];
-            if (file) {
-                handleImageFile(file);
-            }
-        }
-
-        // Handle image file
-        function handleImageFile(file) {
-            // Validate file
-            if (!file.type.match('image.*')) {
-                alert('Por favor, selecciona un archivo de imagen válido.');
-                return;
-            }
-            
-            if (file.size > 5 * 1024 * 1024) {
-                alert('El archivo no debe superar los 5MB.');
-                return;
-            }
-            
-            uploadImageToImgBB(file);
-        }
-
-        // Upload image to ImgBB
-        async function uploadImageToImgBB(file) {
-            const formData = new FormData();
-            formData.append('key', imgbbApiKey);
-            formData.append('image', file);
-            
-            try {
-                // Show progress
-                document.getElementById('uploadProgress').style.display = 'block';
-                document.getElementById('progressBar').style.width = '50%';
-                
-                const response = await fetch('https://api.imgbb.com/1/upload', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    uploadedImageUrl = data.data.url;
-                    document.getElementById('productImage').value = uploadedImageUrl;
-                    
-                    // Show preview
-                    document.getElementById('imagePreview').src = uploadedImageUrl;
-                    document.getElementById('imagePreviewContainer').style.display = 'block';
-                    document.getElementById('uploadProgress').style.display = 'none';
-                    document.getElementById('progressBar').style.width = '100%';
-                    
-                    setTimeout(() => {
-                        document.getElementById('uploadProgress').style.display = 'none';
-                        document.getElementById('progressBar').style.width = '0%';
-                    }, 1000);
-                } else {
-                    throw new Error('Error al subir la imagen');
-                }
-            } catch (error) {
-                console.error('Error uploading image:', error);
-                alert('Error al subir la imagen. Por favor, intenta nuevamente.');
-                document.getElementById('uploadProgress').style.display = 'none';
-                document.getElementById('progressBar').style.width = '0%';
-            }
-        }
-
-        // Remove uploaded image
-        function removeImage() {
-            uploadedImageUrl = null;
-            document.getElementById('productImage').value = '';
-            document.getElementById('imagePreviewContainer').style.display = 'none';
-            document.getElementById('imageInput').value = '';
-        }
-
-        // Toggle sidebar for mobile
+        // =====================================================
+        // Sidebar / Navigation
+        // =====================================================
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('show');
+            document.getElementById('sidebarOverlay').classList.toggle('show');
+        }
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('show');
+            document.getElementById('sidebarOverlay').classList.remove('show');
         }
 
-        // Show section
         function showSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
             currentSection = sectionId;
 
-            // Load section-specific data
-            switch(sectionId) {
-                case 'dashboard':
-                    loadDashboardData();
-                    break;
-                case 'products':
-                    loadProducts();
-                    break;
-                case 'orders':
-                    loadOrders();
-                    break;
-                case 'financing':
-                    loadQuotas();
-                    break;
-                case 'config':
-                    loadConfiguration();
-                    break;
-            }
+            // Update desktop nav
+            document.querySelectorAll('.nav-menu .nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll(`.nav-menu a[onclick*="${sectionId}"]`).forEach(l => l.classList.add('active'));
 
-            // Close mobile sidebar
-            if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.remove('show');
+            // Update mobile bottom nav
+            document.querySelectorAll('.mob-nav-btn').forEach(b => b.classList.remove('active'));
+            const mBtn = document.getElementById('mnav-' + sectionId);
+            if (mBtn) mBtn.classList.add('active');
+
+            switch(sectionId) {
+                case 'dashboard':   loadDashboardData(); break;
+                case 'products':    loadProducts(); break;
+                case 'orders':      loadOrders(); break;
+                case 'financing':   loadQuotas(); break;
+                case 'config':      loadConfiguration(); break;
             }
+            closeSidebar();
         }
 
-        // Load dashboard data
+        // =====================================================
+        // Dashboard
+        // =====================================================
         async function loadDashboardData() {
             try {
-                // Load stats
-                const { data: products } = await supabase.from('productos').select('id');
-                const { data: orders } = await supabase.from('compras').select('id, monto_total');
-                const { data: quotas } = await supabase.from('cuotas').select('id').eq('estado', 'pendiente');
+                const [prodRec, compRec, cuotRec] = await Promise.all([
+                    DB.get('productos'), DB.get('compras'), DB.get('cuotas')
+                ]);
+                const products = prodRec.productos || [];
+                const orders = compRec.compras || [];
+                const quotas = cuotRec.cuotas || [];
 
-                document.getElementById('totalProducts').textContent = products ? products.length : 0;
-                document.getElementById('totalOrders').textContent = orders ? orders.length : 0;
-                document.getElementById('pendingPayments').textContent = quotas ? quotas.length : 0;
-                
-                const totalRevenue = orders ? orders.reduce((sum, order) => sum + order.monto_total, 0) : 0;
-                document.getElementById('totalRevenue').textContent = `$${totalRevenue.toFixed(2)}`;
+                document.getElementById('totalProducts').textContent = products.length;
+                document.getElementById('totalOrders').textContent = orders.length;
+                document.getElementById('pendingPayments').textContent = quotas.filter(q => q.estado === 'pendiente').length;
+                const rev = orders.reduce((s, o) => s + (parseFloat(o.monto_total) || 0), 0);
+                document.getElementById('totalRevenue').textContent = `$${rev.toFixed(2)}`;
 
-                // Load recent orders
-                const { data: recentOrders, error } = await supabase
-                    .from('compras')
-                    .select(`
-                        *,
-                        productos(nombre)
-                    `)
-                    .order('fecha_creacion', { ascending: false })
-                    .limit(5);
-
-                if (error) throw error;
-
-                displayRecentOrders(recentOrders || []);
-            } catch (error) {
-                console.error('Error loading dashboard:', error);
+                const recent = orders
+                    .sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion))
+                    .slice(0, 5)
+                    .map(o => ({ ...o, productos: products.find(p => p.id == o.producto_id) }));
+                displayRecentOrders(recent);
+            } catch (err) {
+                console.error('Dashboard error:', err);
             }
         }
 
-        // Display recent orders
         function displayRecentOrders(orders) {
             const tbody = document.getElementById('recentOrdersTable');
             tbody.innerHTML = '';
-
+            if (!orders.length) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-3">Sin pedidos aún</td></tr>';
+                return;
+            }
             orders.forEach(order => {
-                const row = `
+                tbody.innerHTML += `
                     <tr>
-                        <td><code>${order.codigo_compra}</code></td>
+                        <td><code style="font-size:0.7rem">${order.codigo_compra}</code></td>
                         <td>${order.nombre} ${order.apellido}</td>
                         <td>${order.productos?.nombre || 'N/A'}</td>
-                        <td>$${order.monto_total.toFixed(2)}</td>
-                        <td><span class="status-badge ${getOrderStatusClass(order.estado)}">${order.estado}</span></td>
+                        <td>$${parseFloat(order.monto_total).toFixed(2)}</td>
+                        <td><span class="status-badge ${getOrderStatusClass(order.estado)}">${order.estado || 'pendiente'}</span></td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewOrderDetails('${order.codigo_compra}')">
-                                <i class="bi bi-eye"></i>
+                            <button class="btn btn-sm btn-outline-primary" onclick="verifyPayment('${order.codigo_compra}')">
+                                <i class="bi bi-check-circle"></i>
                             </button>
                         </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
+                    </tr>`;
             });
         }
 
-        // Load products
+        // =====================================================
+        // Products
+        // =====================================================
         async function loadProducts() {
             try {
-                const { data: products, error } = await supabase
-                    .from('productos')
-                    .select('*')
-                    .order('nombre');
-
-                if (error) throw error;
-
-                displayProducts(products || []);
-            } catch (error) {
-                console.error('Error loading products:', error);
+                const rec = await DB.get('productos');
+                const products = (rec.productos || []).sort((a, b) => a.nombre.localeCompare(b.nombre));
+                displayProducts(products);
+            } catch (err) {
+                console.error(err);
+                showNotification('Error al cargar productos', 'error');
             }
         }
 
-        // Display products
         function displayProducts(products) {
             const tbody = document.getElementById('productsTable');
             tbody.innerHTML = '';
-
+            if (!products.length) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-3">Sin productos</td></tr>';
+                return;
+            }
             products.forEach(product => {
                 const sizeName = sizeMapping[product.categoria] || product.categoria;
-                const row = `
+                tbody.innerHTML += `
                     <tr>
                         <td>
-                            <img src="${product.imagen || 'https://picsum.photos/seed/product' + product.id + '/100/100'}" 
-                                 alt="${product.nombre}" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+                            <img src="${product.imagen || 'https://picsum.photos/seed/p' + product.id + '/80/80'}"
+                                 alt="${product.nombre}" style="width:40px;height:40px;object-fit:cover;border-radius:6px;">
                         </td>
-                        <td>${product.nombre}</td>
-                        <td>${product.descripcion || '-'}</td>
-                        <td><span class="size-badge">${sizeName}</span></td>
-                        <td>$${product.precio.toFixed(2)}</td>
-                        <td>
-                            <span class="${product.stock > 5 ? 'text-success' : product.stock > 0 ? 'text-warning' : 'text-danger'}">
-                                ${product.stock}
-                            </span>
+                        <td><strong>${product.nombre}</strong></td>
+                        <td><span class="status-badge" style="background:var(--secondary);color:var(--dark)">${sizeName}</span></td>
+                        <td>$${parseFloat(product.precio).toFixed(2)}</td>
+                        <td class="${product.stock > 5 ? 'text-success' : product.stock > 0 ? 'text-warning' : 'text-danger'}">
+                            <strong>${product.stock}</strong>
                         </td>
                         <td>
                             <span class="status-badge ${product.activo ? 'status-paid' : 'status-sold'}">
                                 ${product.activo ? 'Activo' : 'Vendido'}
                             </span>
                         </td>
-                        <td>
+                        <td style="white-space:nowrap">
                             <button class="btn btn-sm btn-outline-primary" onclick="editProduct(${product.id})">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct(${product.id})">
+                            <button class="btn btn-sm btn-outline-danger ms-1" onclick="deleteProduct(${product.id})">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
+                    </tr>`;
             });
         }
 
-        // Open product modal
         function openProductModal(productId = null) {
             const modal = new bootstrap.Modal(document.getElementById('productModal'));
-            const form = document.getElementById('productForm');
-            
-            form.reset();
+            document.getElementById('productForm').reset();
             document.getElementById('productId').value = '';
             document.getElementById('productModalTitle').textContent = 'Nuevo Producto';
-            
-            // Reset image upload
             removeImage();
-
-            if (productId) {
-                loadProductForEdit(productId);
-            }
-
+            if (productId) loadProductForEdit(productId);
             modal.show();
         }
 
-        // Load product for edit
         async function loadProductForEdit(productId) {
             try {
-                const { data: product, error } = await supabase
-                    .from('productos')
-                    .select('*')
-                    .eq('id', productId)
-                    .single();
-
-                if (error) throw error;
-
+                const rec = await DB.get('productos');
+                const product = rec.productos.find(p => p.id == productId);
+                if (!product) return;
                 document.getElementById('productId').value = product.id;
                 document.getElementById('productName').value = product.nombre;
                 document.getElementById('productCategory').value = product.categoria || 'sabanas';
                 document.getElementById('productDescription').value = product.descripcion || '';
                 document.getElementById('productPrice').value = product.precio;
                 document.getElementById('productStock').value = product.stock;
-                document.getElementById('productStatus').value = product.activo;
-                
+                document.getElementById('productStatus').value = String(product.activo);
                 if (product.imagen) {
                     uploadedImageUrl = product.imagen;
                     document.getElementById('productImage').value = product.imagen;
                     document.getElementById('imagePreview').src = product.imagen;
                     document.getElementById('imagePreviewContainer').style.display = 'block';
                 }
-                
                 document.getElementById('productModalTitle').textContent = 'Editar Producto';
-            } catch (error) {
-                console.error('Error loading product:', error);
+            } catch (err) {
+                console.error(err);
             }
         }
 
-        // Edit product
-        function editProduct(productId) {
-            openProductModal(productId);
-        }
+        function editProduct(productId) { openProductModal(productId); }
 
-        // Save product
         async function saveProduct() {
             const productId = document.getElementById('productId').value;
             const productData = {
@@ -1140,408 +848,349 @@
                 activo: document.getElementById('productStatus').value === 'true',
                 imagen: uploadedImageUrl || null
             };
-
             try {
-                let result;
+                const rec = await DB.get('productos');
                 if (productId) {
-                    result = await supabase
-                        .from('productos')
-                        .update(productData)
-                        .eq('id', productId);
+                    const idx = rec.productos.findIndex(p => p.id == productId);
+                    if (idx >= 0) rec.productos[idx] = { ...rec.productos[idx], ...productData };
                 } else {
-                    result = await supabase
-                        .from('productos')
-                        .insert([productData]);
+                    productData.id = uid();
+                    rec.productos.push(productData);
                 }
-
-                if (result.error) throw result.error;
-
+                await DB.set('productos', rec);
                 bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
                 loadProducts();
                 showNotification('Producto guardado exitosamente', 'success');
-            } catch (error) {
-                console.error('Error saving product:', error);
+            } catch (err) {
+                console.error(err);
                 showNotification('Error al guardar el producto', 'error');
             }
         }
 
-        // Delete product
         async function deleteProduct(productId) {
-            if (!confirm('¿Está seguro de eliminar este producto?')) return;
-
+            if (!confirm('¿Eliminar este producto?')) return;
             try {
-                const { error } = await supabase
-                    .from('productos')
-                    .delete()
-                    .eq('id', productId);
-
-                if (error) throw error;
-
+                const rec = await DB.get('productos');
+                rec.productos = rec.productos.filter(p => p.id != productId);
+                await DB.set('productos', rec);
                 loadProducts();
                 showNotification('Producto eliminado exitosamente', 'success');
-            } catch (error) {
-                console.error('Error deleting product:', error);
+            } catch (err) {
+                console.error(err);
                 showNotification('Error al eliminar el producto', 'error');
             }
         }
 
-        // Load orders
+        // =====================================================
+        // Orders
+        // =====================================================
         async function loadOrders() {
             try {
-                const { data: orders, error } = await supabase
-                    .from('compras')
-                    .select(`
-                        *,
-                        productos(nombre)
-                    `)
-                    .order('fecha_creacion', { ascending: false });
-
-                if (error) throw error;
-
-                displayOrders(orders || []);
-            } catch (error) {
-                console.error('Error loading orders:', error);
+                const [compRec, prodRec] = await Promise.all([DB.get('compras'), DB.get('productos')]);
+                const products = prodRec.productos || [];
+                const orders = (compRec.compras || [])
+                    .sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion))
+                    .map(o => ({ ...o, productos: products.find(p => p.id == o.producto_id) }));
+                displayOrders(orders);
+            } catch (err) {
+                console.error(err);
             }
         }
 
-        // Display orders
         function displayOrders(orders) {
             const tbody = document.getElementById('ordersTable');
             tbody.innerHTML = '';
-
+            if (!orders.length) {
+                tbody.innerHTML = '<tr><td colspan="9" class="text-center text-muted py-3">Sin pedidos</td></tr>';
+                return;
+            }
             orders.forEach(order => {
-                const row = `
+                tbody.innerHTML += `
                     <tr>
-                        <td><code>${order.codigo_compra}</code></td>
-                        <td>${new Date(order.fecha_creacion).toLocaleDateString()}</td>
+                        <td><code style="font-size:0.7rem">${order.codigo_compra}</code></td>
+                        <td>${order.fecha_creacion ? new Date(order.fecha_creacion).toLocaleDateString() : '-'}</td>
                         <td>${order.nombre} ${order.apellido}</td>
                         <td>
-                            <a href="https://wa.me/${order.whatsapp.replace('+', '')}" target="_blank">
+                            <a href="https://wa.me/${(order.whatsapp || '').replace(/\D/g, '')}" target="_blank" style="font-size:0.78rem">
                                 ${order.whatsapp}
                             </a>
                         </td>
                         <td>${order.productos?.nombre || 'N/A'}</td>
-                        <td>$${order.monto_total.toFixed(2)}</td>
+                        <td>$${parseFloat(order.monto_total).toFixed(2)}</td>
                         <td>${order.tipo_pago === 'financing' ? 'Financiado' : 'Completo'}</td>
-                        <td>
-                            <span class="status-badge ${getOrderStatusClass(order.estado)}">
-                                ${order.estado || 'pendiente'}
-                            </span>
-                        </td>
+                        <td><span class="status-badge ${getOrderStatusClass(order.estado)}">${order.estado || 'pendiente'}</span></td>
                         <td>
                             <button class="btn btn-sm btn-outline-success" onclick="verifyPayment('${order.codigo_compra}')">
-                                <i class="bi bi-check-circle"></i> Verificar
+                                <i class="bi bi-check-circle"></i>
                             </button>
                         </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
+                    </tr>`;
             });
         }
 
-        // Load quotas
-        async function loadQuotas() {
-            try {
-                const { data: quotas, error } = await supabase
-                    .from('cuotas')
-                    .select(`
-                        *,
-                        compras(
-                            codigo_compra,
-                            nombre,
-                            apellido,
-                            whatsapp
-                        )
-                    `)
-                    .eq('estado', 'pendiente')
-                    .order('fecha_vencimiento', { ascending: true });
-
-                if (error) throw error;
-
-                displayQuotas(quotas || []);
-            } catch (error) {
-                console.error('Error loading quotas:', error);
-            }
-        }
-
-        // Display quotas
-        function displayQuotas(quotas) {
-            const tbody = document.getElementById('quotasTable');
-            tbody.innerHTML = '';
-
-            quotas.forEach(quota => {
-                const isOverdue = new Date(quota.fecha_vencimiento) < new Date();
-                const statusClass = isOverdue ? 'status-overdue' : 'status-pending';
-                const statusText = isOverdue ? 'Vencida' : 'Pendiente';
-
-                const row = `
-                    <tr>
-                        <td><code>${quota.compras.codigo_compra}</code></td>
-                        <td>${quota.compras.nombre} ${quota.compras.apellido}</td>
-                        <td>Cuota ${quota.numero_cuota}/${quota.numero_cuotas}</td>
-                        <td>$${quota.monto.toFixed(2)}</td>
-                        <td>${new Date(quota.fecha_vencimiento).toLocaleDateString()}</td>
-                        <td>
-                            <span class="status-badge ${statusClass}">${statusText}</span>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-success" onclick="verifyQuotaPayment(${quota.id})">
-                                <i class="bi bi-check-circle"></i> Verificar Pago
-                            </button>
-                            <button class="btn btn-sm btn-outline-warning" onclick="sendReminder('${quota.compras.codigo_compra}', ${quota.numero_cuota})">
-                                <i class="bi bi-bell"></i> Recordar
-                            </button>
-                        </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-        }
-
-        // Verify payment
         async function verifyPayment(orderCode) {
-            if (!confirm('¿Confirmar que se ha recibido el pago de esta orden?')) return;
-
+            if (!confirm('¿Confirmar pago recibido de esta orden?')) return;
             try {
-                const { error } = await supabase
-                    .from('compras')
-                    .update({ estado: 'pagado' })
-                    .eq('codigo_compra', orderCode);
-
-                if (error) throw error;
-
+                const rec = await DB.get('compras');
+                const order = rec.compras.find(o => o.codigo_compra === orderCode);
+                if (order) order.estado = 'pagado';
+                await DB.set('compras', rec);
                 loadOrders();
                 showNotification('Pago verificado exitosamente', 'success');
-            } catch (error) {
-                console.error('Error verifying payment:', error);
+            } catch (err) {
                 showNotification('Error al verificar el pago', 'error');
             }
         }
 
-        // Verify quota payment
-        async function verifyQuotaPayment(quotaId) {
-            if (!confirm('¿Confirmar que se ha recibido el pago de esta cuota?')) return;
-
+        // =====================================================
+        // Financing / Quotas
+        // =====================================================
+        async function loadQuotas() {
             try {
-                const { error } = await supabase
-                    .from('cuotas')
-                    .update({ estado: 'pagada', pagada: true })
-                    .eq('id', quotaId);
+                const [cuotRec, compRec] = await Promise.all([DB.get('cuotas'), DB.get('compras')]);
+                const orders = compRec.compras || [];
+                const quotas = (cuotRec.cuotas || [])
+                    .filter(q => q.estado === 'pendiente')
+                    .sort((a, b) => new Date(a.fecha_vencimiento) - new Date(b.fecha_vencimiento))
+                    .map(q => ({ ...q, compras: orders.find(o => o.id == q.compra_id) || {} }));
+                displayQuotas(quotas);
+            } catch (err) {
+                console.error(err);
+            }
+        }
 
-                if (error) throw error;
+        function displayQuotas(quotas) {
+            const tbody = document.getElementById('quotasTable');
+            tbody.innerHTML = '';
+            if (!quotas.length) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-3">Sin cuotas pendientes</td></tr>';
+                return;
+            }
+            quotas.forEach(quota => {
+                const overdue = new Date(quota.fecha_vencimiento) < new Date();
+                tbody.innerHTML += `
+                    <tr>
+                        <td><code style="font-size:0.7rem">${quota.compras.codigo_compra || '-'}</code></td>
+                        <td>${quota.compras.nombre || ''} ${quota.compras.apellido || ''}</td>
+                        <td>Cuota ${quota.numero_cuota}/${quota.numero_cuotas || '?'}</td>
+                        <td>$${parseFloat(quota.monto).toFixed(2)}</td>
+                        <td>${new Date(quota.fecha_vencimiento).toLocaleDateString()}</td>
+                        <td><span class="status-badge ${overdue ? 'status-overdue' : 'status-pending'}">${overdue ? 'Vencida' : 'Pendiente'}</span></td>
+                        <td style="white-space:nowrap">
+                            <button class="btn btn-sm btn-outline-success" onclick="verifyQuotaPayment(${quota.id})">
+                                <i class="bi bi-check-circle"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-warning ms-1" onclick="sendReminder('${quota.compras.codigo_compra}', ${quota.numero_cuota})">
+                                <i class="bi bi-bell"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+            });
+        }
 
-                // Check if all quotas are paid
-                const { data: quota } = await supabase
-                    .from('cuotas')
-                    .select('compra_id')
-                    .eq('id', quotaId)
-                    .single();
-
+        async function verifyQuotaPayment(quotaId) {
+            if (!confirm('¿Confirmar pago de esta cuota?')) return;
+            try {
+                const [cuotRec, compRec] = await Promise.all([DB.get('cuotas'), DB.get('compras')]);
+                const quota = cuotRec.cuotas.find(q => q.id == quotaId);
                 if (quota) {
-                    const { data: remainingQuotas } = await supabase
-                        .from('cuotas')
-                        .select('id')
-                        .eq('compra_id', quota.compra_id)
-                        .eq('estado', 'pendiente');
+                    quota.estado = 'pagada';
+                    quota.pagada = true;
+                    await DB.set('cuotas', cuotRec);
 
-                    if (remainingQuotas.length === 0) {
-                        await supabase
-                            .from('compras')
-                            .update({ estado: 'completado' })
-                            .eq('id', quota.compra_id);
+                    const remaining = cuotRec.cuotas.filter(q => q.compra_id == quota.compra_id && q.estado === 'pendiente');
+                    if (remaining.length === 0) {
+                        const order = compRec.compras.find(o => o.id == quota.compra_id);
+                        if (order) {
+                            order.estado = 'completado';
+                            await DB.set('compras', compRec);
+                        }
                     }
                 }
-
                 loadQuotas();
                 showNotification('Cuota verificada exitosamente', 'success');
-            } catch (error) {
-                console.error('Error verifying quota payment:', error);
+            } catch (err) {
+                console.error(err);
                 showNotification('Error al verificar la cuota', 'error');
             }
         }
 
-        // Send reminder
         async function sendReminder(orderCode, quotaNumber) {
             try {
-                const { data: order, error } = await supabase
-                    .from('compras')
-                    .select('*')
-                    .eq('codigo_compra', orderCode)
-                    .single();
-
-                if (error) throw error;
-
-                const message = encodeURIComponent(
+                const rec = await DB.get('compras');
+                const order = rec.compras.find(o => o.codigo_compra === orderCode);
+                if (!order) throw new Error('Orden no encontrada');
+                const msg = encodeURIComponent(
                     `📝 *RECORDATORIO DE PAGO - LenceriaShops*\n\n` +
-                    `📋 Código de Compra: ${orderCode}\n` +
+                    `📋 Código: ${orderCode}\n` +
                     `👤 Cliente: ${order.nombre} ${order.apellido}\n` +
                     `💳 Cuota: ${quotaNumber}\n\n` +
-                    `Estimado cliente, le recordamos que tiene un pago pendiente. ` +
-                    `Por favor, realice su pago a la brevedad posible para evitar interrupciones en el servicio.\n\n` +
-                    `Gracias por su comprensión.`
+                    `Le recordamos que tiene un pago pendiente. Realice su pago a la brevedad posible.\n\nGracias.`
                 );
-
-                window.open(`https://wa.me/${order.whatsapp.replace('+', '')}?text=${message}`, '_blank');
+                window.open(`https://wa.me/${(order.whatsapp || '').replace(/\D/g, '')}?text=${msg}`, '_blank');
                 showNotification('Recordatorio enviado', 'success');
-            } catch (error) {
-                console.error('Error sending reminder:', error);
+            } catch (err) {
                 showNotification('Error al enviar recordatorio', 'error');
             }
         }
 
-        // Send reminders to all overdue quotas
         async function sendReminders() {
             try {
-                const { data: overdueQuotas, error } = await supabase
-                    .from('cuotas')
-                    .select(`
-                        *,
-                        compras(
-                            codigo_compra,
-                            nombre,
-                            apellido,
-                            whatsapp
-                        )
-                    `)
-                    .eq('estado', 'pendiente')
-                    .lt('fecha_vencimiento', new Date().toISOString());
+                const [cuotRec, compRec] = await Promise.all([DB.get('cuotas'), DB.get('compras')]);
+                const orders = compRec.compras || [];
+                const overdue = (cuotRec.cuotas || [])
+                    .filter(q => q.estado === 'pendiente' && new Date(q.fecha_vencimiento) < new Date())
+                    .map(q => ({ ...q, compras: orders.find(o => o.id == q.compra_id) || {} }));
 
-                if (error) throw error;
-
-                const messagesDiv = document.getElementById('reminderMessages');
-                messagesDiv.innerHTML = '';
-
-                if (overdueQuotas.length === 0) {
-                    messagesDiv.innerHTML = '<p class="text-success">No hay cuotas vencidas para recordar.</p>';
+                const div = document.getElementById('reminderMessages');
+                div.innerHTML = '';
+                if (!overdue.length) {
+                    div.innerHTML = '<p class="text-success small">No hay cuotas vencidas.</p>';
                     return;
                 }
-
-                overdueQuotas.forEach(quota => {
-                    const message = `Recordatorio enviado a ${quota.compras.nombre} ${quota.compras.apellido} - Cuota ${quota.numero_cuota}`;
-                    messagesDiv.innerHTML += `<div class="whatsapp-message">${message}</div>`;
-                    
-                    setTimeout(() => {
-                        sendReminder(quota.compras.codigo_compra, quota.numero_cuota);
-                    }, 1000);
+                overdue.forEach((q, i) => {
+                    div.innerHTML += `<div class="whatsapp-message">Recordatorio → ${q.compras.nombre || ''} ${q.compras.apellido || ''} - Cuota ${q.numero_cuota}</div>`;
+                    if (q.compras.codigo_compra) {
+                        setTimeout(() => sendReminder(q.compras.codigo_compra, q.numero_cuota), (i + 1) * 1200);
+                    }
                 });
-
-                showNotification(`${overdueQuotas.length} recordatorios enviados`, 'success');
-            } catch (error) {
-                console.error('Error sending reminders:', error);
+                showNotification(`${overdue.length} recordatorios enviados`, 'success');
+            } catch (err) {
                 showNotification('Error al enviar recordatorios', 'error');
             }
         }
 
-        // Load configuration
+        // =====================================================
+        // Configuration
+        // =====================================================
         async function loadConfiguration() {
             try {
-                const { data: config, error } = await supabase
-                    .from('configuracion')
-                    .select('*');
-
-                if (error && error.code !== 'PGRST116') throw error;
-
-                config?.forEach(item => {
-                    switch(item.clave) {
-                        case 'financiamiento':
-                            financingConfig = item.valor;
-                            document.getElementById('initialAmount').value = financingConfig.monto_inicial || 10;
-                            document.getElementById('numQuotas').value = financingConfig.numero_cuotas || 2;
-                            document.getElementById('daysBetweenQuotas').value = financingConfig.dias_cuota || 15;
-                            break;
-                        case 'whatsapp_ventas':
-                            document.getElementById('salesWhatsApp').value = item.valor;
-                            break;
-                        case 'email_soporte':
-                            document.getElementById('supportEmail').value = item.valor;
-                            break;
-                    }
-                });
-            } catch (error) {
-                console.error('Error loading configuration:', error);
+                const rec = await DB.get('config');
+                const cfg = rec.configuracion || {};
+                const fin = cfg.financiamiento || {};
+                financingConfig = fin;
+                document.getElementById('initialAmount').value = fin.monto_inicial || 10;
+                document.getElementById('numQuotas').value = fin.numero_cuotas || 2;
+                document.getElementById('daysBetweenQuotas').value = fin.dias_cuota || 15;
+                if (cfg.whatsapp_ventas) document.getElementById('salesWhatsApp').value = cfg.whatsapp_ventas;
+                if (cfg.email_soporte) document.getElementById('supportEmail').value = cfg.email_soporte;
+            } catch (err) {
+                console.error('Config error:', err);
             }
         }
 
-        // Save financing configuration
         async function saveFinancingConfig() {
             const config = {
                 monto_inicial: parseFloat(document.getElementById('initialAmount').value),
                 numero_cuotas: parseInt(document.getElementById('numQuotas').value),
                 dias_cuota: parseInt(document.getElementById('daysBetweenQuotas').value)
             };
-
             try {
-                const { error } = await supabase
-                    .from('configuracion')
-                    .upsert({ clave: 'financiamiento', valor: config });
-
-                if (error) throw error;
-
+                const rec = await DB.get('config');
+                if (!rec.configuracion) rec.configuracion = {};
+                rec.configuracion.financiamiento = config;
+                await DB.set('config', rec);
                 financingConfig = config;
-                showNotification('Configuración de financiamiento guardada', 'success');
-            } catch (error) {
-                console.error('Error saving financing config:', error);
+                showNotification('Configuración guardada', 'success');
+            } catch (err) {
                 showNotification('Error al guardar configuración', 'error');
             }
         }
 
-        // Save contact configuration
         async function saveContactConfig() {
             const whatsapp = document.getElementById('salesWhatsApp').value;
             const email = document.getElementById('supportEmail').value;
-
             try {
-                await supabase
-                    .from('configuracion')
-                    .upsert({ clave: 'whatsapp_ventas', valor: whatsapp });
-
-                if (email) {
-                    await supabase
-                        .from('configuracion')
-                        .upsert({ clave: 'email_soporte', valor: email });
-                }
-
-                showNotification('Configuración de contacto guardada', 'success');
-            } catch (error) {
-                console.error('Error saving contact config:', error);
-                showNotification('Error al guardar configuración', 'error');
+                const rec = await DB.get('config');
+                if (!rec.configuracion) rec.configuracion = {};
+                rec.configuracion.whatsapp_ventas = whatsapp;
+                rec.configuracion.email_soporte = email;
+                await DB.set('config', rec);
+                showNotification('Contacto guardado', 'success');
+            } catch (err) {
+                showNotification('Error al guardar contacto', 'error');
             }
         }
 
-        // View order details
-        function viewOrderDetails(orderCode) {
-            // Implementation for viewing detailed order information
-            alert(`Ver detalles del pedido: ${orderCode}`);
+        // =====================================================
+        // Image Upload (ImgBB)
+        // =====================================================
+        function setupImageUpload() {
+            const imageInput = document.getElementById('imageInput');
+            const uploadArea = document.getElementById('imageUploadArea');
+            imageInput.addEventListener('change', e => { if (e.target.files[0]) handleImageFile(e.target.files[0]); });
+            uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.style.borderColor = 'var(--primary)'; });
+            uploadArea.addEventListener('dragleave', () => { uploadArea.style.borderColor = '#e0e0e0'; });
+            uploadArea.addEventListener('drop', e => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#e0e0e0';
+                if (e.dataTransfer.files[0]) handleImageFile(e.dataTransfer.files[0]);
+            });
         }
 
-        // Get order status class
+        function handleImageFile(file) {
+            if (!file.type.match('image.*')) { alert('Por favor selecciona una imagen válida.'); return; }
+            if (file.size > 5 * 1024 * 1024) { alert('La imagen no debe superar 5MB.'); return; }
+            uploadImageToImgBB(file);
+        }
+
+        async function uploadImageToImgBB(file) {
+            const formData = new FormData();
+            formData.append('key', imgbbApiKey);
+            formData.append('image', file);
+            try {
+                document.getElementById('uploadProgress').style.display = 'block';
+                document.getElementById('progressBar').style.width = '50%';
+                const res = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body: formData });
+                const data = await res.json();
+                if (data.success) {
+                    uploadedImageUrl = data.data.url;
+                    document.getElementById('productImage').value = uploadedImageUrl;
+                    document.getElementById('imagePreview').src = uploadedImageUrl;
+                    document.getElementById('imagePreviewContainer').style.display = 'block';
+                    document.getElementById('progressBar').style.width = '100%';
+                    setTimeout(() => {
+                        document.getElementById('uploadProgress').style.display = 'none';
+                        document.getElementById('progressBar').style.width = '0%';
+                    }, 800);
+                } else {
+                    throw new Error('Upload failed');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Error al subir la imagen. Intenta nuevamente.');
+                document.getElementById('uploadProgress').style.display = 'none';
+                document.getElementById('progressBar').style.width = '0%';
+            }
+        }
+
+        function removeImage() {
+            uploadedImageUrl = null;
+            document.getElementById('productImage').value = '';
+            document.getElementById('imagePreviewContainer').style.display = 'none';
+            document.getElementById('imageInput').value = '';
+        }
+
+        // =====================================================
+        // Helpers
+        // =====================================================
         function getOrderStatusClass(status) {
             switch(status) {
                 case 'pagado': return 'status-paid';
-                case 'pendiente': return 'status-pending';
                 case 'completado': return 'status-paid';
+                case 'pendiente': return 'status-pending';
                 default: return 'status-pending';
             }
         }
 
-        // Show notification
         function showNotification(message, type) {
             const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-            const alert = `
-                <div class="alert ${alertClass} alert-dismissible fade show position-fixed" 
-                     style="top: 20px; right: 20px; z-index: 9999;" role="alert">
-                    ${message}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', alert);
-            
-            setTimeout(() => {
-                const alertElement = document.querySelector('.alert');
-                if (alertElement) {
-                    alertElement.remove();
-                }
-            }, 3000);
+            const div = document.createElement('div');
+            div.className = `alert ${alertClass} alert-dismissible fade show position-fixed`;
+            div.style.cssText = 'top:16px;right:16px;z-index:9999;font-size:0.82rem;padding:8px 36px 8px 12px;max-width:280px;';
+            div.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert" style="top:6px;right:8px;"></button>`;
+            document.body.appendChild(div);
+            setTimeout(() => { if (div.parentElement) div.remove(); }, 3000);
         }
     </script>
 </body>
