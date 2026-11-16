@@ -1,0 +1,138 @@
+/* YamiLencerias — estilos compartidos (catálogo, páginas legales y 404) */
+:root {
+  --ink: #2b1a1f;
+  --wine: #7a2e3f;
+  --wine-d: #5c2230;
+  --blush: #f7ece8;
+  --gold: #b88a5a;
+  --bg: #fcf9f6;
+  --muted: #665357;
+  --line: #e9dcd6;
+  --ok: #17653a;
+  --warn: #8a5a00;
+  --bad: #b3261e;
+  --wa: #0e7a3e;
+  --r: 14px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font: 16px/1.55 var(--font);
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: clip;
+  overflow-wrap: break-word;
+  /* Protección: sin selección ni menú de pulsación larga */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+input, textarea, select { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+img, svg { max-width: 100%; display: block; }
+img { -webkit-user-drag: none; user-drag: none; }
+a { color: var(--wine); }
+:focus-visible { outline: 3px solid var(--wine); outline-offset: 2px; border-radius: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 8px; top: -60px; background: var(--wine); color: #fff; padding: 10px 14px; border-radius: 8px; z-index: 2000; }
+.skip:focus { top: 8px; }
+
+@media print { body { display: none !important; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 14px; }
+
+/* ── Cabecera ── */
+.site-header {
+  background: var(--blush);
+  border-bottom: 1px solid var(--line);
+  padding: calc(10px + env(safe-area-inset-top)) 0 10px;
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--wine); text-decoration: none;
+  font: italic 600 1.5rem/1 var(--serif); letter-spacing: .01em;
+}
+.brand svg { width: 34px; height: 34px; flex: none; }
+
+/* ── Botones ── */
+.btn {
+  appearance: none; border: 0; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: .65rem 1.2rem;
+  border-radius: 999px; background: var(--wine); color: #fff;
+  font: 600 .95rem/1.2 var(--font); text-decoration: none;
+  transition: background .15s;
+}
+.btn:hover { background: var(--wine-d); }
+.btn:disabled { background: #6f6568; cursor: not-allowed; }
+.btn-ghost { background: transparent; color: var(--wine); box-shadow: inset 0 0 0 1.5px var(--wine); }
+.btn-ghost:hover { background: var(--blush); }
+.btn svg { width: 18px; height: 18px; }
+
+/* ── Botón flotante de WhatsApp ── */
+.wa-fab {
+  position: fixed; z-index: 900;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--wa); color: #fff; text-decoration: none;
+  padding: .7rem 1.05rem .7rem .85rem; border-radius: 999px;
+  font: 600 .92rem/1 var(--font);
+  box-shadow: 0 6px 20px rgba(14, 122, 62, .4);
+}
+.wa-fab svg { width: 24px; height: 24px; flex: none; }
+.wa-fab:hover { background: #0a6332; }
+
+/* ── Pie ── */
+.site-footer { background: var(--wine-d); color: #fff; margin-top: auto; padding: 22px 0 calc(22px + env(safe-area-inset-bottom)); font-size: .9rem; }
+.site-footer .wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin: 0; padding: 0; list-style: none; }
+.site-footer a, .site-footer button.linklike { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.site-footer button.linklike { background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
+.site-footer small { opacity: .92; }
+
+/* ── Aviso de cookies ── */
+.cookie-bar {
+  position: fixed; z-index: 1100;
+  left: 12px; right: 12px; margin: 0 auto; max-width: 720px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  background: #fff; border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(43, 26, 31, .25);
+  padding: 16px; display: grid; gap: 12px;
+}
+.cookie-bar h2 { margin: 0; font: 700 1rem var(--font); }
+.cookie-bar p { margin: 0; font-size: .9rem; color: var(--muted); }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.cookie-actions .btn { flex: 1 1 150px; }
+
+/* ── Páginas legales y 404 ── */
+.prose { width: 100%; max-width: 780px; margin: 0 auto; padding: 28px 16px 56px; -webkit-user-select: none; user-select: none; }
+.prose h1 { font: 600 clamp(1.6rem, 5vw, 2.2rem)/1.2 var(--serif); color: var(--wine); margin: 0 0 6px; }
+.prose .updated { color: var(--muted); font-size: .88rem; margin: 0 0 24px; }
+.prose h2 { font: 700 1.15rem/1.3 var(--font); margin: 28px 0 8px; }
+.prose p, .prose li { max-width: 70ch; }
+.prose ul { padding-left: 1.2rem; }
+.prose li { margin-bottom: 4px; }
+.prose mark { background: #fff2c2; color: #3b2f00; padding: 0 .25em; border-radius: 4px; }
+.prose dl { margin: 0; display: grid; gap: 10px; }
+.prose dl > div { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.prose dt { font-weight: 700; margin-bottom: 2px; }
+.prose dd { margin: 0; color: var(--muted); }
+.back { display: inline-block; margin-bottom: 18px; font-weight: 600; }
+.notfound { text-align: center; padding: 56px 16px 72px; }
+.notfound .code { font: italic 600 clamp(4rem, 20vw, 7rem)/1 var(--serif); color: var(--wine); margin: 0; }
+.notfound h1 { font: 600 1.5rem var(--serif); margin: 8px 0; }
+.notfound p { color: var(--muted); max-width: 46ch; margin: 0 auto 22px; }

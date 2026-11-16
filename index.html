@@ -1,728 +1,700 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LenceriaShops - Catálogo</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="LenceriaShops">
-    <meta name="theme-color" content="#d4a574">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <style>
-        :root {
-            --primary: #d4a574;
-            --secondary: #f5e6d3;
-            --dark: #2c1810;
-            --bg: #faf8f5;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: var(--bg);
-            color: var(--dark);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .navbar {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-            padding: 10px 0;
-        }
-        .navbar-brand {
-            font-size: 1.3rem;
-            font-weight: 400;
-            letter-spacing: 1.5px;
-            color: white !important;
-        }
-        .hero-section {
-            background: linear-gradient(135deg, rgba(212,165,116,0.1), rgba(245,230,211,0.3));
-            padding: 12px 0 10px;
-            text-align: center;
-        }
-        .hero-section h1 { font-size: 1.2rem; font-weight: 400; color: var(--dark); }
-        .hero-section p { font-size: 0.8rem; color: #666; margin: 2px 0 0; }
-        .category-filters {
-            background: white;
-            padding: 10px 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .filter-buttons-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px;
-        }
-        .filter-btn {
-            background: white;
-            border: 1.5px solid var(--primary);
-            color: var(--primary);
-            padding: 4px 11px;
-            border-radius: 20px;
-            font-weight: 500;
-            font-size: 0.75rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .filter-btn.active, .filter-btn:active {
-            background: var(--primary);
-            color: white;
-        }
-        .content-section { flex: 1; padding: 10px 0 70px; }
-        .product-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
-            height: 100%;
-            position: relative;
-        }
-        .product-image {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            background: var(--secondary);
-            display: block;
-        }
-        .product-image.sold { opacity: 0.65; filter: grayscale(30%); }
-        .product-body { padding: 10px; }
-        .product-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
-        .product-desc { font-size: 0.72rem; color: #888; margin-bottom: 4px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .product-price { font-size: 1.05rem; color: var(--primary); font-weight: 700; margin-bottom: 6px; }
-        .size-badge {
-            background: var(--secondary);
-            color: var(--dark);
-            padding: 2px 7px;
-            border-radius: 8px;
-            font-size: 0.68rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 6px;
-        }
-        .stock-badge {
-            display: block;
-            padding: 2px 0;
-            font-size: 0.7rem;
-            margin-bottom: 7px;
-        }
-        .stock-available { color: #155724; }
-        .stock-low { color: #856404; }
-        .sold-badge {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: #dc3545;
-            color: white;
-            padding: 3px 9px;
-            border-radius: 15px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            z-index: 5;
-            transform: rotate(4deg);
-        }
-        .btn-buy {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            width: 100%;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .btn-buy:disabled { background: #aaa; cursor: not-allowed; }
-        .loading-spinner { display: none; text-align: center; padding: 30px; }
-        .no-products { text-align: center; padding: 30px; color: #999; }
-        .no-products i { font-size: 2.5rem; display: block; margin-bottom: 10px; }
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 72px;
-            right: 15px;
-            background: #25d366;
-            color: white;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 4px 14px rgba(37,211,102,0.45);
-            text-decoration: none;
-            z-index: 900;
-        }
-        .footer {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-        .footer small { font-size: 0.72rem; }
-        .footer a { color: white; text-decoration: none; font-weight: 500; }
-        .pagination-container { display: flex; justify-content: center; margin-top: 16px; }
-        .pagination .page-link { color: var(--primary); border-color: var(--primary); padding: 5px 10px; font-size: 0.82rem; }
-        .pagination .page-item.active .page-link { background: var(--primary); border-color: var(--primary); color: white; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<script src="site.js"></script>
 
-        /* Modal mobile */
-        .modal-content { border-radius: 16px; border: none; }
-        .modal-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 16px 16px 0 0;
-            padding: 12px 16px;
-        }
-        .modal-title { font-size: 1rem; }
-        .modal-body { padding: 14px; }
-        .modal-footer { padding: 10px 14px; }
-        .form-control, .form-select {
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            padding: 8px 10px;
-            font-size: 0.85rem;
-        }
-        .form-label { font-size: 0.82rem; font-weight: 500; margin-bottom: 3px; }
-        .form-text-transform-hint { font-size: 0.7rem; color: #999; margin-top: 2px; }
-        .payment-option {
-            border: 1.5px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 10px 12px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: border-color 0.2s;
-        }
-        .payment-option.selected { border-color: var(--primary); background: rgba(212,165,116,0.06); }
-        .form-check-label strong { font-size: 0.85rem; }
-        .form-check-label p { font-size: 0.75rem; }
-        .financing-details {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 10px;
-            display: none;
-            font-size: 0.82rem;
-        }
-        .financing-details.show { display: block; }
-        .financing-details .h5 { font-size: 1rem; }
-        .alert { font-size: 0.8rem; padding: 8px 12px; }
+<title>YamiLencerias | Catálogo de lencería para cama</title>
+<meta name="description" content="YamiLencerias: sábanas, cubrecamas, almohadas y fundas en tamaños Individual, Matrimonial, Queen y King. Compra por WhatsApp, de contado o en cuotas.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://www.yamilencerias.com/">
+<meta name="theme-color" content="#7a2e3f">
 
-        @media (max-width: 767px) {
-            .modal-dialog { margin: 10px; }
-            .modal-content { border-radius: 14px; }
-            .product-image { height: 140px; }
-            .product-body { padding: 8px; }
-        }
-    </style>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="YamiLencerias">
+<meta property="og:title" content="YamiLencerias | Catálogo de lencería para cama">
+<meta property="og:description" content="Sábanas, cubrecamas, almohadas y fundas en todos los tamaños. Pide por WhatsApp, de contado o en cuotas.">
+<meta property="og:url" content="https://www.yamilencerias.com/">
+<meta property="og:image" content="https://www.yamilencerias.com/og-image.png">
+<meta property="og:image:alt" content="YamiLencerias, catálogo de lencería para cama">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="YamiLencerias">
+
+<link rel="preconnect" href="https://api.jsonbin.io" crossorigin>
+<link rel="dns-prefetch" href="https://i.ibb.co">
+<link rel="dns-prefetch" href="https://wsrv.nl">
+<link rel="stylesheet" href="site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "OnlineStore",
+      "@id": "https://www.yamilencerias.com/#tienda",
+      "name": "YamiLencerias",
+      "url": "https://www.yamilencerias.com/",
+      "logo": "https://www.yamilencerias.com/icon-512.png",
+      "image": "https://www.yamilencerias.com/og-image.png",
+      "description": "Tienda en línea de lencería para cama: sábanas, cubrecamas, almohadas y fundas.",
+      "telephone": "+584129204453",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+584129204453",
+        "contactType": "customer service",
+        "availableLanguage": "Spanish"
+      },
+      "paymentAccepted": "Pago completo, financiamiento en cuotas",
+      "priceRange": "$$"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.yamilencerias.com/#web",
+      "url": "https://www.yamilencerias.com/",
+      "name": "YamiLencerias",
+      "inLanguage": "es",
+      "publisher": { "@id": "https://www.yamilencerias.com/#tienda" }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" id="ld-products">{"@context":"https://schema.org","@type":"ItemList","name":"Catálogo YamiLencerias","itemListElement":[]}</script>
+
+<style>
+/* ── Catálogo ── */
+.hero { text-align: center; padding: 22px 0 14px; }
+.hero h1 { font: 600 clamp(1.5rem, 5.5vw, 2.3rem)/1.2 var(--serif); margin: 0; color: var(--ink); }
+.hero p { margin: 6px 0 0; color: var(--muted); font-size: .95rem; }
+
+.filters { position: sticky; top: 0; z-index: 100; background: rgba(252, 249, 246, .96); border-bottom: 1px solid var(--line); padding: 10px 0; }
+.filters .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.chip {
+  appearance: none; cursor: pointer; background: #fff; color: var(--wine);
+  border: 1.5px solid var(--wine); border-radius: 999px; min-height: 40px;
+  padding: .4rem .95rem; font: 600 .88rem/1 var(--font);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.chip[aria-pressed="true"] { background: var(--wine); color: #fff; }
+.chip:hover { background: var(--blush); }
+.chip[aria-pressed="true"]:hover { background: var(--wine-d); }
+
+main { padding: 18px 0 110px; }
+.count { margin: 0 0 12px; color: var(--muted); font-size: .88rem; }
+
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+@media (min-width: 640px)  { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } }
+@media (min-width: 960px)  { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
+@media (min-width: 1280px) { .grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+
+.card { display: flex; flex-direction: column; height: 100%; background: #fff; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; min-width: 0; }
+.thumb { position: relative; aspect-ratio: 4 / 3; background: var(--blush); overflow: hidden; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.thumb::after {
+  content: "YamiLencerias"; position: absolute; inset: 0; display: grid; place-items: center;
+  font: italic 600 clamp(.95rem, 3.6vw, 1.35rem) var(--serif); color: rgba(255, 255, 255, .5);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .35); transform: rotate(-22deg); pointer-events: none;
+}
+.card.sold .thumb img { opacity: .55; filter: grayscale(.4); }
+.badge-sold { position: absolute; top: 8px; right: 8px; z-index: 2; background: #9b1c1c; color: #fff; padding: 3px 10px; border-radius: 999px; font: 700 .75rem/1.3 var(--font); }
+.body { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px 12px; flex: 1; min-width: 0; }
+.title { font: 600 .95rem/1.3 var(--font); margin: 0; overflow-wrap: anywhere; }
+.size { align-self: flex-start; background: var(--blush); color: var(--wine-d); font: 600 .78rem/1.5 var(--font); padding: 1px 10px; border-radius: 999px; }
+.desc { margin: 0; color: var(--muted); font-size: .84rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.price { font: 700 1.25rem/1.2 var(--font); color: var(--wine); margin-top: auto; padding-top: 4px; }
+.stock { font: 600 .82rem/1.2 var(--font); }
+.stock.ok { color: var(--ok); } .stock.low { color: var(--warn); } .stock.out { color: var(--bad); }
+.buy { width: 100%; margin-top: 4px; }
+
+.skeleton { border-radius: var(--r); aspect-ratio: 3 / 4; background: linear-gradient(100deg, #f1e6e1 30%, #fbf4f0 50%, #f1e6e1 70%); background-size: 300% 100%; animation: sh 1.3s linear infinite; }
+@keyframes sh { to { background-position: -150% 0; } }
+
+.empty { text-align: center; color: var(--muted); padding: 40px 12px; grid-column: 1 / -1; }
+.empty strong { display: block; color: var(--ink); font-size: 1.05rem; margin-bottom: 4px; }
+.empty .btn { margin-top: 14px; }
+
+.pager { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 24px; }
+.pg { appearance: none; cursor: pointer; min-width: 42px; min-height: 42px; padding: 0 10px; background: #fff; color: var(--wine); border: 1.5px solid var(--wine); border-radius: 10px; font: 600 .9rem var(--font); }
+.pg[aria-current="page"] { background: var(--wine); color: #fff; }
+.pg[disabled] { border-color: var(--line); color: var(--muted); cursor: default; }
+
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 1300; max-width: min(92vw, 440px); background: var(--ink); color: #fff; padding: 12px 16px; border-radius: 12px; font-size: .92rem; box-shadow: 0 8px 28px rgba(0, 0, 0, .3); }
+.toast[hidden] { display: none; }
+
+/* ── Ventana de compra ── */
+html.lock { overflow: hidden; }
+dialog { border: 0; padding: 0; border-radius: 18px; width: min(520px, calc(100vw - 24px)); max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); background: #fff; color: var(--ink); overflow: hidden; }
+dialog[open] { display: flex; }
+dialog::backdrop { background: rgba(43, 26, 31, .6); }
+.dlg { display: flex; flex-direction: column; width: 100%; min-height: 0; }
+.dlg-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--wine); color: #fff; padding: 14px 16px; }
+.dlg-h h2 { margin: 0; font: 700 1.05rem var(--font); }
+.x { appearance: none; background: transparent; border: 0; color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; }
+.x:hover { background: rgba(255, 255, 255, .18); }
+.x svg { width: 22px; height: 22px; }
+#buyForm { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.dlg-b { padding: 16px; overflow-y: auto; overscroll-behavior: contain; display: grid; gap: 12px; }
+.dlg-f { display: flex; gap: 8px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: #fff; }
+.dlg-f .btn { flex: 1 1 0; }
+.sum { margin: 0; background: var(--blush); border-radius: 10px; padding: 10px 12px; font-size: .92rem; }
+.sum strong { color: var(--wine); }
+.g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 380px) { .g2 { grid-template-columns: minmax(0, 1fr); } }
+.field label, .legend { display: block; font: 600 .88rem var(--font); margin-bottom: 4px; }
+.field input { width: 100%; min-height: 46px; padding: 10px 12px; border: 1.5px solid #cdbfb9; border-radius: 10px; font: 16px var(--font); color: var(--ink); background: #fff; }
+.field input:focus { border-color: var(--wine); outline: 3px solid rgba(122, 46, 63, .2); outline-offset: 0; }
+.field input:user-invalid { border-color: var(--bad); }
+.field .up { text-transform: uppercase; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.pay { display: flex; gap: 10px; align-items: flex-start; border: 1.5px solid #cdbfb9; border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; cursor: pointer; }
+.pay.sel { border-color: var(--wine); background: rgba(122, 46, 63, .05); }
+.pay.off { opacity: .6; cursor: not-allowed; }
+.pay input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--wine); flex: none; }
+.pay b { display: block; font-size: .95rem; }
+.pay span { color: var(--muted); font-size: .84rem; }
+.fin { display: none; background: #f6f1ee; border-radius: 10px; padding: 12px; font-size: .88rem; }
+.fin.show { display: block; }
+.fin h3 { margin: 0 0 8px; font: 700 .95rem var(--font); }
+.fin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 8px; text-align: center; }
+.fin-grid small { display: block; color: var(--muted); }
+.fin-grid b { color: var(--wine); font-size: 1.05rem; }
+.fin p { margin: 8px 0 0; color: var(--muted); }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-size: .86rem; }
+.consent input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--wine); flex: none; }
+.note { margin: 0; font-size: .86rem; color: var(--muted); }
+.done { padding: 22px 18px 24px; text-align: center; display: grid; gap: 12px; justify-items: center; }
+.done[hidden] { display: none; }
+.done h3 { margin: 0; font: 600 1.3rem var(--serif); color: var(--wine); }
+.done p { margin: 0; color: var(--muted); }
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-shop"></i> LenceriaShops
-            </a>
-        </div>
-    </nav>
+<a class="skip" href="#catalogo">Saltar al catálogo</a>
 
-    <section class="hero-section">
-        <div class="container">
-            <h1>Catálogo de Lencería Premium</h1>
-            <p>Colección exclusiva por tamaños</p>
-        </div>
-    </section>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="YamiLencerias, ir al inicio">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#7a2e3f"/><path d="M20 18l12 17 12-17M32 35v15" fill="none" stroke="#f7ece8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      YamiLencerias
+    </a>
+  </div>
+</header>
 
-    <section class="content-section">
-        <div class="container-fluid px-2">
-            <div class="category-filters mb-2" style="border-radius:0;">
-                <div class="filter-buttons-container">
-                    <button class="filter-btn active" onclick="filterBySize('all', this)">
-                        <i class="bi bi-grid-3x3-gap"></i> Todos
-                    </button>
-                    <button class="filter-btn" onclick="filterBySize('sabanas', this)">
-                        <i class="bi bi-rulers"></i> Individual
-                    </button>
-                    <button class="filter-btn" onclick="filterBySize('cubrecamas', this)">
-                        <i class="bi bi-arrows-angle-expand"></i> Matrimonial
-                    </button>
-                    <button class="filter-btn" onclick="filterBySize('almohadas', this)">
-                        <i class="bi bi-arrows-fullscreen"></i> Queen
-                    </button>
-                    <button class="filter-btn" onclick="filterBySize('fundas', this)">
-                        <i class="bi bi-aspect-ratio"></i> King
-                    </button>
-                </div>
-            </div>
+<section class="hero">
+  <div class="wrap">
+    <h1>Catálogo de lencería premium</h1>
+    <p>Sábanas, cubrecamas, almohadas y fundas por tamaño</p>
+  </div>
+</section>
 
-            <div class="loading-spinner" id="loadingSpinner">
-                <div class="spinner-border" style="color:var(--primary)" role="status"></div>
-                <p class="mt-2 small">Cargando productos...</p>
-            </div>
+<nav class="filters" aria-label="Filtrar por tamaño">
+  <div class="wrap" id="filters">
+    <button class="chip" type="button" data-filter="all" aria-pressed="true">Todos</button>
+    <button class="chip" type="button" data-filter="sabanas" aria-pressed="false">Individual</button>
+    <button class="chip" type="button" data-filter="cubrecamas" aria-pressed="false">Matrimonial</button>
+    <button class="chip" type="button" data-filter="almohadas" aria-pressed="false">Queen</button>
+    <button class="chip" type="button" data-filter="fundas" aria-pressed="false">King</button>
+  </div>
+</nav>
 
-            <div class="row g-2 px-1" id="productsContainer"></div>
+<main id="catalogo">
+  <div class="wrap">
+    <p class="count" id="count" aria-live="polite"></p>
+    <ul class="grid" id="grid" aria-busy="true"></ul>
+    <noscript><p class="empty"><strong>Activa JavaScript para ver el catálogo.</strong>También puedes escribirnos por WhatsApp.</p></noscript>
+    <div class="pager" id="pager"></div>
+  </div>
+</main>
 
-            <div class="pagination-container" id="paginationContainer"></div>
-        </div>
-    </section>
+<footer class="site-footer">
+  <div class="wrap">
+    <ul class="footer-links">
+      <li><a href="aviso-legal.html">Aviso legal</a></li>
+      <li><a href="politica-privacidad.html">Política de privacidad</a></li>
+      <li><a href="politica-cookies.html">Política de cookies</a></li>
+      <li><button type="button" class="linklike" data-cookie-prefs>Preferencias de cookies</button></li>
+    </ul>
+    <small>&copy; <span id="yr">2026</span> YamiLencerias | <a href="https://www.instagram.com/inkgstar" target="_blank" rel="noopener noreferrer">gstarINK</a></small>
+  </div>
+</footer>
 
-    <footer class="footer">
-        <div class="container">
-            <small>&copy; 2024 LenceriaShops | <a href="https://www.instagram.com/inkgstar" target="_blank">gstarINK</a></small>
-        </div>
-    </footer>
+<a class="wa-fab" id="waFab" href="https://wa.me/584129204453?text=Hola%20YamiLencerias%2C%20necesito%20ayuda." target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  WhatsApp
+</a>
 
-    <!-- Purchase Modal -->
-    <div class="modal fade" id="purchaseModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="bi bi-bag-check"></i> Completar Compra</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="purchaseForm">
-                        <input type="hidden" id="productId">
-                        <input type="hidden" id="productPrice">
-                        <input type="hidden" id="productName">
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <label class="form-label">Nombre *</label>
-                                <input type="text" class="form-control" id="firstName" required>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label">Apellido *</label>
-                                <input type="text" class="form-control" id="lastName" required>
-                            </div>
-                        </div>
-
-                        <div class="mb-2">
-                            <label class="form-label">WhatsApp *</label>
-                            <input type="tel" class="form-control" id="whatsapp" placeholder="+58 422XXXXXXX" required>
-                        </div>
-
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <label class="form-label">Edificio *</label>
-                                <input type="text" class="form-control text-uppercase" id="building" required>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label">Apartamento *</label>
-                                <input type="text" class="form-control text-uppercase" id="apartment" required>
-                            </div>
-                        </div>
-
-                        <div class="mb-1">
-                            <label class="form-label">Método de Pago *</label>
-                            <div class="payment-option" onclick="this.querySelector('input').click()">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="paymentType" id="paymentFull" value="full" required>
-                                    <label class="form-check-label" for="paymentFull">
-                                        <strong>Pago Completo</strong>
-                                        <p class="mb-0 text-muted">Total del producto</p>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="payment-option" onclick="this.querySelector('input').click()">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="paymentType" id="paymentFinancing" value="financing">
-                                    <label class="form-check-label" for="paymentFinancing">
-                                        <strong>Financiamiento</strong>
-                                        <p class="mb-0 text-muted">Inicial + cuotas quincenales</p>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="financing-details" id="financingDetails">
-                            <h6 class="mb-2">Detalles del Financiamiento</h6>
-                            <div class="row text-center">
-                                <div class="col-4">
-                                    <small class="text-muted d-block">Inicial</small>
-                                    <span class="h5" style="color:var(--primary)" id="initialAmount">$0</span>
-                                </div>
-                                <div class="col-4">
-                                    <small class="text-muted d-block">Cuota 1</small>
-                                    <span class="h5" style="color:var(--primary)" id="quota1">$0</span>
-                                </div>
-                                <div class="col-4">
-                                    <small class="text-muted d-block">Cuota 2</small>
-                                    <span class="h5" style="color:var(--primary)" id="quota2">$0</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="alert alert-info mt-2 mb-0">
-                            <i class="bi bi-info-circle"></i> Serás redirigido a WhatsApp para confirmar.
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-sm" id="confirmPurchase" style="background:var(--primary);color:white;border:none;border-radius:8px;padding:7px 16px;">
-                        <i class="bi bi-whatsapp"></i> Confirmar
-                    </button>
-                </div>
-            </div>
-        </div>
+<dialog id="buyDialog" aria-labelledby="buyTitle">
+  <div class="dlg">
+    <div class="dlg-h">
+      <h2 id="buyTitle">Completar compra</h2>
+      <button type="button" class="x" data-close aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
 
-    <a href="https://wa.me/584129204453?text=Hola%20LenceriaShops%2C%20necesito%20ayuda." target="_blank" class="whatsapp-btn">
-        <i class="bi bi-headset"></i>
-    </a>
+    <form id="buyForm" autocomplete="on">
+      <div class="dlg-b">
+        <p class="sum" id="buySummary"></p>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // =====================================================
-        // JSONBin.io Configuration
-        // REEMPLAZA los IDs de los bins con los tuyos
-        // =====================================================
-        const DB = {
-            key: '$2a$10$.8.yyKcPSDxyqhB3HXGfRO0vfwIxCo/nKu18i.U8/N78AauRqJhre',
-            bins: {
-                productos:    '699e7bbcae596e708f474ad9',   // ← reemplaza
-                compras:      '699e7bd143b1c97be99b7d65',     // ← reemplaza
-                cuotas:       '699e7be4d0ea881f40d6e603',      // ← reemplaza
-                config:       '699e7bf7d0ea881f40d6e62e'        // ← reemplaza
-            },
-            baseUrl: 'https://api.jsonbin.io/v3/b',
-            async get(bin) {
-                const r = await fetch(`${this.baseUrl}/${this.bins[bin]}/latest`, {
-                    headers: { 'X-Master-Key': this.key }
-                });
-                if (!r.ok) throw new Error('Error leyendo ' + bin);
-                return (await r.json()).record;
-            },
-            async set(bin, data) {
-                const r = await fetch(`${this.baseUrl}/${this.bins[bin]}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json', 'X-Master-Key': this.key },
-                    body: JSON.stringify(data)
-                });
-                if (!r.ok) throw new Error('Error escribiendo ' + bin);
-                return (await r.json()).record;
-            }
-        };
+        <div class="g2">
+          <div class="field"><label for="firstName">Nombre *</label><input id="firstName" name="given-name" autocomplete="given-name" required maxlength="60"></div>
+          <div class="field"><label for="lastName">Apellido *</label><input id="lastName" name="family-name" autocomplete="family-name" required maxlength="60"></div>
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp *</label>
+          <input id="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="+58 4XXXXXXXXX" pattern="\+58 \d{10}" title="Formato: +58 seguido de 10 dígitos" required>
+        </div>
+        <div class="g2">
+          <div class="field"><label for="building">Edificio *</label><input class="up" id="building" required maxlength="60"></div>
+          <div class="field"><label for="apartment">Apartamento *</label><input class="up" id="apartment" required maxlength="20"></div>
+        </div>
 
-        const uid = () => Date.now() * 1000 + Math.floor(Math.random() * 999);
+        <fieldset>
+          <legend class="legend">Método de pago *</legend>
+          <label class="pay" id="payFullBox"><input type="radio" name="paymentType" value="full" required><div><b>Pago completo</b><span>Total del producto</span></div></label>
+          <label class="pay" id="payFinBox"><input type="radio" name="paymentType" value="financing"><div><b>Financiamiento</b><span id="payFinText">Inicial + cuotas</span></div></label>
+        </fieldset>
 
-        // =====================================================
-        // Global state
-        // =====================================================
-        let currentProduct = null;
-        let financingConfig = { monto_inicial: 10, numero_cuotas: 2, dias_cuota: 15 };
-        let allProducts = [];
-        let currentFilter = 'all';
-        let currentPage = 1;
-        const productsPerPage = 12;
+        <div class="fin" id="fin" aria-live="polite">
+          <h3>Detalles del financiamiento</h3>
+          <div class="fin-grid" id="finGrid"></div>
+          <p id="finNote"></p>
+        </div>
 
-        const sizeMapping = {
-            'sabanas': 'Individual',
-            'cubrecamas': 'Matrimonial',
-            'almohadas': 'Queen',
-            'fundas': 'King'
-        };
+        <label class="consent">
+          <input type="checkbox" id="consent" required>
+          <span>He leído la <a href="politica-privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y acepto el tratamiento de mis datos para gestionar este pedido.</span>
+        </label>
+        <p class="note">Al confirmar te llevaremos a WhatsApp para coordinar el pago y el envío.</p>
+      </div>
+      <div class="dlg-f">
+        <button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+        <button type="submit" class="btn" id="confirmBtn">Confirmar pedido</button>
+      </div>
+    </form>
 
-        // =====================================================
-        // Init
-        // =====================================================
-        document.addEventListener('DOMContentLoaded', () => {
-            loadProducts();
-            loadFinancingConfig();
-            setupEventListeners();
-        });
+    <div class="done" id="buyDone" hidden>
+      <h3>¡Pedido registrado!</h3>
+      <p>Envíanos tu pedido por WhatsApp para confirmarlo. Si no se abrió solo, toca el botón.</p>
+      <a class="btn" id="doneLink" href="#" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>
+      <button type="button" class="btn btn-ghost" data-close>Cerrar</button>
+    </div>
+  </div>
+</dialog>
 
-        function setupEventListeners() {
-            document.querySelectorAll('input[name="paymentType"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
-                    this.closest('.payment-option').classList.add('selected');
-                    if (this.value === 'financing') showFinancingDetails();
-                    else hideFinancingDetails();
-                });
-            });
+<script>
+(function () {
+  'use strict';
 
-            document.getElementById('confirmPurchase').addEventListener('click', processPurchase);
+  /* =====================================================
+     Base de datos (JSONBin.io)
+     ===================================================== */
+  const DB = {
+    key: '$2a$10$.8.yyKcPSDxyqhB3HXGfRO0vfwIxCo/nKu18i.U8/N78AauRqJhre',
+    bins: {
+      productos: '699e7bbcae596e708f474ad9',
+      compras:   '699e7bd143b1c97be99b7d65',
+      cuotas:    '699e7be4d0ea881f40d6e603',
+      config:    '699e7bf7d0ea881f40d6e62e'
+    },
+    baseUrl: 'https://api.jsonbin.io/v3/b',
+    async get(bin) {
+      const r = await fetch(`${this.baseUrl}/${this.bins[bin]}/latest`, { headers: { 'X-Master-Key': this.key } });
+      if (!r.ok) throw new Error('Error leyendo ' + bin);
+      return (await r.json()).record;
+    },
+    async set(bin, data) {
+      const r = await fetch(`${this.baseUrl}/${this.bins[bin]}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'X-Master-Key': this.key },
+        body: JSON.stringify(data)
+      });
+      if (!r.ok) throw new Error('Error escribiendo ' + bin);
+      return (await r.json()).record;
+    }
+  };
 
-            document.getElementById('whatsapp').addEventListener('input', function(e) {
-                let v = e.target.value.replace(/\D/g, '');
-                if (v.length > 0 && !v.startsWith('58')) v = '58' + v;
-                if (v.length >= 4) v = '+' + v.slice(0, 3) + ' ' + v.slice(3);
-                e.target.value = v;
-            });
+  /* =====================================================
+     Utilidades
+     ===================================================== */
+  const YL = window.YL;
+  const $ = (s, r = document) => r.querySelector(s);
+  const uid = () => Date.now() * 1000 + Math.floor(Math.random() * 999);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const money = n => '$' + (parseFloat(n) || 0).toFixed(2);
+  const SIZE = { sabanas: 'Individual', cubrecamas: 'Matrimonial', almohadas: 'Queen', fundas: 'King' };
+  const PLACEHOLDER = 'data:image/svg+xml,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#f7ece8"/><path d="M120 190h160M135 190v-40a15 15 0 0 1 15-15h100a15 15 0 0 1 15 15v40M120 190v20M280 190v20" fill="none" stroke="#b88a5a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 
-            document.getElementById('firstName').addEventListener('input', function(e) {
-                const v = e.target.value;
-                if (v) e.target.value = v.charAt(0).toUpperCase() + v.slice(1).toLowerCase();
-            });
-            document.getElementById('lastName').addEventListener('input', function(e) {
-                const v = e.target.value;
-                if (v) e.target.value = v.charAt(0).toUpperCase() + v.slice(1).toLowerCase();
-            });
-            document.getElementById('building').addEventListener('input', e => e.target.value = e.target.value.toUpperCase());
-            document.getElementById('apartment').addEventListener('input', e => e.target.value = e.target.value.toUpperCase());
+  // Imágenes comprimidas y redimensionadas (WebP) mediante wsrv.nl, con respaldo al original
+  const thumb = (url, w) => `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w}&h=${Math.round(w * 0.75)}&fit=cover&output=webp&q=75`;
+
+  let toastTimer;
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg; t.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.hidden = true; }, 4500);
+  }
+
+  /* =====================================================
+     Estado
+     ===================================================== */
+  let allProducts = [];
+  let filter = 'all';
+  let page = 1;
+  const PER_PAGE = 12;
+  let fin = { monto_inicial: 10, numero_cuotas: 2, dias_cuota: 15 };
+  let waNumber = YL.whatsapp;
+  let current = null;
+  let busy = false;
+  const CACHE_KEY = 'yl_products_v1';
+
+  /* =====================================================
+     Carga de productos (con caché para abrir al instante)
+     ===================================================== */
+  function readCache() {
+    try {
+      const c = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+      return c && Array.isArray(c.a) && Date.now() - c.t < 864e5 ? c.a : null;
+    } catch (e) { return null; }
+  }
+  function writeCache(a) { try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), a })); } catch (e) { /* sin almacenamiento */ } }
+
+  function skeletons() {
+    $('#grid').innerHTML = Array.from({ length: 8 }, () => '<li class="skeleton" aria-hidden="true"></li>').join('');
+  }
+
+  async function loadProducts() {
+    const cached = readCache();
+    if (cached) { allProducts = cached; render(); } else { skeletons(); }
+    try {
+      const rec = await DB.get('productos');
+      allProducts = (rec.productos || []).slice().sort((a, b) => String(a.nombre).localeCompare(String(b.nombre), 'es'));
+      writeCache(allProducts);
+      render();
+    } catch (err) {
+      console.error(err);
+      if (!cached) {
+        $('#grid').setAttribute('aria-busy', 'false');
+        $('#grid').innerHTML = '<li class="empty"><strong>No pudimos cargar el catálogo</strong>Revisa tu conexión e inténtalo de nuevo.<br><button type="button" class="btn" data-retry>Reintentar</button></li>';
+        $('#count').textContent = '';
+        $('#pager').innerHTML = '';
+      }
+    }
+  }
+
+  async function loadConfig() {
+    try {
+      const rec = await DB.get('config');
+      const cfg = rec.configuracion || {};
+      if (cfg.financiamiento) fin = Object.assign(fin, cfg.financiamiento);
+      const wa = String(cfg.whatsapp_ventas || '').replace(/\D/g, '');
+      if (wa.length >= 10) {
+        waNumber = wa;
+        $('#waFab').href = `https://wa.me/${wa}?text=${encodeURIComponent('Hola ' + YL.brand + ', necesito ayuda.')}`;
+      }
+    } catch (e) { /* se usan los valores por defecto */ }
+  }
+
+  /* =====================================================
+     Render
+     ===================================================== */
+  const isSold = p => !p.activo || !(p.stock > 0);
+
+  function card(p, i) {
+    const sold = isSold(p);
+    const size = SIZE[p.categoria] || p.categoria || '';
+    const alt = `${p.nombre}${size ? ' · tamaño ' + size : ''} – ${YL.brand}`;
+    const orig = p.imagen || '';
+    const src = orig ? thumb(orig, 480) : PLACEHOLDER;
+    const srcset = orig ? `${thumb(orig, 360)} 360w, ${thumb(orig, 720)} 720w` : '';
+    const stock = sold ? '<span class="stock out">Vendido</span>'
+      : p.stock > 5 ? '<span class="stock ok">✓ Disponible</span>'
+      : `<span class="stock low">¡Solo quedan ${esc(p.stock)}!</span>`;
+    return `<li><article class="card${sold ? ' sold' : ''}" id="p${esc(p.id)}">
+      <div class="thumb">
+        ${sold ? '<span class="badge-sold">Vendido</span>' : ''}
+        <img src="${esc(src)}" ${srcset ? `srcset="${esc(srcset)}" sizes="(min-width:1280px) 20vw, (min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"` : ''}
+             data-orig="${esc(orig)}" alt="${esc(alt)}" width="400" height="300" draggable="false"
+             decoding="async" loading="${i < 2 ? 'eager' : 'lazy'}" ${i < 2 ? 'fetchpriority="high"' : ''}>
+      </div>
+      <div class="body">
+        <h2 class="title">${esc(p.nombre)}</h2>
+        ${size ? `<span class="size">${esc(size)}</span>` : ''}
+        ${p.descripcion ? `<p class="desc">${esc(p.descripcion)}</p>` : ''}
+        <div class="price">${money(p.precio)}</div>
+        ${stock}
+        <button type="button" class="btn buy" data-buy="${esc(p.id)}" ${sold ? 'disabled' : ''}>${sold ? 'No disponible' : 'Comprar'}</button>
+      </div>
+    </article></li>`;
+  }
+
+  function render() {
+    const list = filter === 'all' ? allProducts : allProducts.filter(p => p.categoria === filter);
+    const pages = Math.max(1, Math.ceil(list.length / PER_PAGE));
+    if (page > pages) page = pages;
+    const slice = list.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+    const grid = $('#grid');
+    grid.setAttribute('aria-busy', 'false');
+    grid.innerHTML = slice.length
+      ? slice.map(card).join('')
+      : '<li class="empty"><strong>No hay productos en esta categoría</strong>Prueba con otro tamaño.</li>';
+    $('#count').textContent = list.length ? `${list.length} ${list.length === 1 ? 'producto' : 'productos'}` : '';
+    renderPager(pages);
+    updateStructuredData(list);
+  }
+
+  function renderPager(pages) {
+    const el = $('#pager');
+    if (pages <= 1) { el.innerHTML = ''; return; }
+    let h = `<button class="pg" data-page="${page - 1}" aria-label="Página anterior" ${page === 1 ? 'disabled' : ''}>‹</button>`;
+    for (let i = 1; i <= pages; i++) {
+      if (i === 1 || i === pages || Math.abs(i - page) <= 1) {
+        h += `<button class="pg" data-page="${i}" aria-label="Página ${i}" ${i === page ? 'aria-current="page"' : ''}>${i}</button>`;
+      } else if (Math.abs(i - page) === 2) {
+        h += '<span class="pg" style="border:0" aria-hidden="true">…</span>';
+      }
+    }
+    h += `<button class="pg" data-page="${page + 1}" aria-label="Página siguiente" ${page === pages ? 'disabled' : ''}>›</button>`;
+    el.innerHTML = h;
+  }
+
+  /* Datos estructurados (schema.org) generados con los productos reales */
+  function updateStructuredData(list) {
+    const items = list.slice(0, 50).map((p, i) => {
+      const size = SIZE[p.categoria] || '';
+      const o = {
+        '@type': 'Product',
+        name: p.nombre,
+        description: p.descripcion || `${p.nombre}, lencería para cama${size ? ' tamaño ' + size : ''}.`,
+        sku: String(p.id),
+        category: 'Lencería para cama',
+        brand: { '@type': 'Brand', name: YL.brand },
+        offers: {
+          '@type': 'Offer',
+          price: (parseFloat(p.precio) || 0).toFixed(2),
+          priceCurrency: 'USD',
+          itemCondition: 'https://schema.org/NewCondition',
+          availability: isSold(p) ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
+          url: `${YL.site}/#p${p.id}`
         }
+      };
+      if (p.imagen) o.image = p.imagen;
+      return { '@type': 'ListItem', position: i + 1, item: o };
+    });
+    $('#ld-products').textContent = JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'ItemList', name: 'Catálogo ' + YL.brand, itemListElement: items
+    });
+  }
 
-        // =====================================================
-        // Load products from JSONBin
-        // =====================================================
-        async function loadProducts() {
-            try {
-                document.getElementById('loadingSpinner').style.display = 'block';
-                document.getElementById('productsContainer').innerHTML = '';
-                const rec = await DB.get('productos');
-                allProducts = (rec.productos || []).sort((a, b) => a.nombre.localeCompare(b.nombre));
-                displayProducts();
-                document.getElementById('loadingSpinner').style.display = 'none';
-            } catch (err) {
-                console.error(err);
-                document.getElementById('loadingSpinner').innerHTML =
-                    '<p class="text-danger small">Error al cargar. Recargue la página.</p>';
-            }
-        }
+  /* =====================================================
+     Ventana de compra
+     ===================================================== */
+  const dlg = $('#buyDialog');
+  const form = $('#buyForm');
 
-        // =====================================================
-        // Load financing config from JSONBin
-        // =====================================================
-        async function loadFinancingConfig() {
-            try {
-                const rec = await DB.get('config');
-                financingConfig = rec.configuracion?.financiamiento || { monto_inicial: 10, numero_cuotas: 2, dias_cuota: 15 };
-            } catch {
-                financingConfig = { monto_inicial: 10, numero_cuotas: 2, dias_cuota: 15 };
-            }
-        }
+  function openBuy(id) {
+    const p = allProducts.find(x => String(x.id) === String(id));
+    if (!p || isSold(p)) return;
+    current = p;
+    form.reset();
+    form.hidden = false; $('#buyDone').hidden = true;
+    document.querySelectorAll('.pay').forEach(l => l.classList.remove('sel'));
+    $('#fin').classList.remove('show');
+    $('#buySummary').innerHTML = `Producto: <strong>${esc(p.nombre)}</strong> — ${money(p.precio)}`;
 
-        // =====================================================
-        // Filter
-        // =====================================================
-        function filterBySize(size, el) {
-            currentFilter = size;
-            currentPage = 1;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            displayProducts();
-        }
+    const price = parseFloat(p.precio) || 0;
+    const canFin = price > fin.monto_inicial;
+    const finInput = form.querySelector('input[value="financing"]');
+    finInput.disabled = !canFin;
+    $('#payFinBox').classList.toggle('off', !canFin);
+    $('#payFinText').textContent = canFin
+      ? `Inicial de ${money(fin.monto_inicial)} + ${fin.numero_cuotas} cuotas cada ${fin.dias_cuota} días`
+      : 'No disponible para este monto';
 
-        // =====================================================
-        // Display products
-        // =====================================================
-        function displayProducts() {
-            const container = document.getElementById('productsContainer');
-            const filtered = currentFilter === 'all'
-                ? allProducts
-                : allProducts.filter(p => p.categoria === currentFilter);
+    document.documentElement.classList.add('lock');
+    dlg.showModal();
+  }
+  function closeBuy() { if (dlg.open) dlg.close(); }
+  dlg.addEventListener('close', () => document.documentElement.classList.remove('lock'));
+  dlg.addEventListener('click', e => { if (e.target === dlg) closeBuy(); });
 
-            const totalPages = Math.ceil(filtered.length / productsPerPage);
-            const start = (currentPage - 1) * productsPerPage;
-            const toShow = filtered.slice(start, start + productsPerPage);
+  function showFinancing() {
+    const price = parseFloat(current.precio) || 0;
+    const n = Math.max(1, parseInt(fin.numero_cuotas, 10) || 1);
+    const quota = Math.max(0, (price - fin.monto_inicial) / n);
+    let h = `<div><small>Inicial</small><b>${money(fin.monto_inicial)}</b></div>`;
+    for (let i = 1; i <= n; i++) h += `<div><small>Cuota ${i}</small><b>${money(quota)}</b></div>`;
+    $('#finGrid').innerHTML = h;
+    $('#finNote').textContent = `Una cuota cada ${fin.dias_cuota} días después de la compra.`;
+    $('#fin').classList.add('show');
+  }
 
-            if (toShow.length === 0) {
-                container.innerHTML = `
-                    <div class="col-12 no-products">
-                        <i class="bi bi-inbox"></i>
-                        <p>No hay productos disponibles</p>
-                        <small class="text-muted">Prueba otra categoría</small>
-                    </div>`;
-            } else {
-                container.innerHTML = '';
-                toShow.forEach(product => {
-                    const isSold = !product.activo;
-                    const sizeName = sizeMapping[product.categoria] || product.categoria;
-                    const nameEscaped = product.nombre.replace(/'/g, "\\'");
-                    container.innerHTML += `
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="product-card">
-                                ${isSold ? '<div class="sold-badge">VENDIDO</div>' : ''}
-                                <img src="${product.imagen || 'https://picsum.photos/seed/ls' + product.id + '/400/300'}"
-                                     alt="${product.nombre}" class="product-image ${isSold ? 'sold' : ''}"
-                                     loading="lazy">
-                                <div class="product-body">
-                                    <div class="product-title">${product.nombre}</div>
-                                    <div class="product-desc">${product.descripcion || ''}</div>
-                                    <span class="size-badge">${sizeName}</span>
-                                    <div class="product-price">$${parseFloat(product.precio).toFixed(2)}</div>
-                                    ${isSold
-                                        ? '<span class="stock-badge stock-low">Producto vendido</span>'
-                                        : (product.stock > 5
-                                            ? '<span class="stock-badge stock-available">✓ Disponible</span>'
-                                            : `<span class="stock-badge stock-low">¡Solo ${product.stock}!</span>`)
-                                    }
-                                    <button class="btn-buy" onclick="openPurchaseModal(${product.id}, '${nameEscaped}', ${product.precio})"
-                                            ${isSold || product.stock <= 0 ? 'disabled' : ''}>
-                                        <i class="bi bi-cart-plus"></i> ${isSold ? 'No disponible' : 'Comprar'}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>`;
-                });
-            }
-            updatePagination(totalPages);
-        }
+  form.addEventListener('change', e => {
+    if (e.target.name !== 'paymentType') return;
+    document.querySelectorAll('.pay').forEach(l => l.classList.remove('sel'));
+    e.target.closest('.pay').classList.add('sel');
+    if (e.target.value === 'financing') showFinancing(); else $('#fin').classList.remove('show');
+  });
 
-        function updatePagination(totalPages) {
-            const pc = document.getElementById('paginationContainer');
-            if (totalPages <= 1) { pc.innerHTML = ''; return; }
-            let html = '<nav><ul class="pagination pagination-sm">';
-            if (currentPage > 1) html += `<li class="page-item"><a class="page-link" href="#" onclick="changePage(${currentPage - 1});return false;"><i class="bi bi-chevron-left"></i></a></li>`;
-            for (let i = 1; i <= totalPages; i++) {
-                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
-                    html += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#" onclick="changePage(${i});return false;">${i}</a></li>`;
-                } else if (i === currentPage - 2 || i === currentPage + 2) {
-                    html += `<li class="page-item disabled"><a class="page-link">...</a></li>`;
-                }
-            }
-            if (currentPage < totalPages) html += `<li class="page-item"><a class="page-link" href="#" onclick="changePage(${currentPage + 1});return false;"><i class="bi bi-chevron-right"></i></a></li>`;
-            html += '</ul></nav>';
-            pc.innerHTML = html;
-        }
+  /* Formato de campos */
+  $('#whatsapp').addEventListener('input', e => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.startsWith('0')) v = v.replace(/^0+/, '');
+    if (v && !v.startsWith('58')) v = '58' + v;
+    e.target.value = v.length > 2 ? '+' + v.slice(0, 2) + ' ' + v.slice(2, 12) : (v ? '+' + v : '');
+  });
+  const titleCase = s => s.toLowerCase().replace(/(^|\s)\S/g, m => m.toUpperCase());
+  ['firstName', 'lastName'].forEach(id => $('#' + id).addEventListener('blur', e => { e.target.value = titleCase(e.target.value.trim()); }));
+  ['building', 'apartment'].forEach(id => $('#' + id).addEventListener('input', e => { e.target.value = e.target.value.toUpperCase(); }));
 
-        function changePage(page) {
-            currentPage = page;
-            displayProducts();
-            document.querySelector('.content-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+  /* =====================================================
+     Procesar compra
+     ===================================================== */
+  const genCode = () => 'YL-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 7).toUpperCase();
 
-        // =====================================================
-        // Purchase Modal
-        // =====================================================
-        function openPurchaseModal(productId, productName, productPrice) {
-            currentProduct = { id: productId, name: productName, price: productPrice };
-            document.getElementById('productId').value = productId;
-            document.getElementById('productName').value = productName;
-            document.getElementById('productPrice').value = productPrice;
-            document.getElementById('purchaseForm').reset();
-            document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
-            hideFinancingDetails();
-            new bootstrap.Modal(document.getElementById('purchaseModal')).show();
-        }
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (busy || !current) return;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
 
-        function showFinancingDetails() {
-            const price = parseFloat(document.getElementById('productPrice').value);
-            const init = financingConfig.monto_inicial;
-            const quota = (price - init) / financingConfig.numero_cuotas;
-            document.getElementById('initialAmount').textContent = `$${init.toFixed(2)}`;
-            document.getElementById('quota1').textContent = `$${quota.toFixed(2)}`;
-            document.getElementById('quota2').textContent = `$${quota.toFixed(2)}`;
-            document.getElementById('financingDetails').classList.add('show');
-        }
+    busy = true;
+    const btn = $('#confirmBtn');
+    btn.disabled = true; btn.textContent = 'Procesando…';
 
-        function hideFinancingDetails() {
-            document.getElementById('financingDetails').classList.remove('show');
-        }
+    try {
+      // Verificar disponibilidad y precio reales justo antes de comprar
+      const prodRec = await DB.get('productos');
+      const prod = (prodRec.productos || []).find(p => String(p.id) === String(current.id));
+      if (!prod || !prod.activo || !(prod.stock > 0)) {
+        toast('Lo sentimos, este producto ya no está disponible.');
+        closeBuy(); await loadProducts(); return;
+      }
+      const price = parseFloat(prod.precio) || 0;
+      const payType = form.querySelector('input[name="paymentType"]:checked').value;
+      const code = genCode();
+      const order = {
+        id: uid(),
+        producto_id: prod.id,
+        nombre: $('#firstName').value.trim(),
+        apellido: $('#lastName').value.trim(),
+        whatsapp: $('#whatsapp').value,
+        edificio: $('#building').value.trim(),
+        apartamento: $('#apartment').value.trim(),
+        tipo_pago: payType,
+        monto_total: price,
+        codigo_compra: code,
+        estado: 'pendiente',
+        fecha_creacion: new Date().toISOString()
+      };
 
-        // =====================================================
-        // Process Purchase → Save to JSONBin
-        // =====================================================
-        async function processPurchase() {
-            const form = document.getElementById('purchaseForm');
-            if (!form.checkValidity()) { form.reportValidity(); return; }
+      const comp = await DB.get('compras');
+      comp.compras = comp.compras || [];
+      comp.compras.push(order);
+      await DB.set('compras', comp);
 
-            const btn = document.getElementById('confirmPurchase');
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+      if (payType === 'financing') await createQuotas(order.id, price);
 
-            const purchaseCode = generatePurchaseCode();
-            const formData = {
-                id: uid(),
-                producto_id: currentProduct.id,
-                nombre: document.getElementById('firstName').value,
-                apellido: document.getElementById('lastName').value,
-                whatsapp: document.getElementById('whatsapp').value,
-                edificio: document.getElementById('building').value,
-                apartamento: document.getElementById('apartment').value,
-                tipo_pago: document.querySelector('input[name="paymentType"]:checked').value,
-                monto_total: currentProduct.price,
-                codigo_compra: purchaseCode,
-                estado: 'pendiente',
-                fecha_creacion: new Date().toISOString()
-            };
+      prod.stock = Math.max(0, prod.stock - 1);
+      if (prod.stock <= 0) prod.activo = false;
+      await DB.set('productos', prodRec);
 
-            try {
-                const comprasRec = await DB.get('compras');
-                comprasRec.compras.push(formData);
-                await DB.set('compras', comprasRec);
+      const url = whatsappUrl(order, prod.nombre);
+      const w = window.open(url, '_blank', 'noopener');
+      $('#doneLink').href = url;
+      form.hidden = true; $('#buyDone').hidden = false;
+      if (!w) toast('Toca "Abrir WhatsApp" para enviar tu pedido.');
+      loadProducts();
+    } catch (err) {
+      console.error(err);
+      toast('No pudimos procesar la compra. Inténtalo de nuevo.');
+    } finally {
+      busy = false;
+      btn.disabled = false; btn.textContent = 'Confirmar pedido';
+    }
+  });
 
-                if (formData.tipo_pago === 'financing') {
-                    await createFinancingQuotas(formData.id, currentProduct.price);
-                }
+  async function createQuotas(orderId, total) {
+    const n = Math.max(1, parseInt(fin.numero_cuotas, 10) || 1);
+    const amount = Math.max(0, (total - fin.monto_inicial) / n);
+    const rec = await DB.get('cuotas');
+    rec.cuotas = rec.cuotas || [];
+    for (let i = 1; i <= n; i++) {
+      const due = new Date();
+      due.setDate(due.getDate() + fin.dias_cuota * i);
+      rec.cuotas.push({
+        id: uid() + i, compra_id: orderId, numero_cuota: i, numero_cuotas: n,
+        monto: amount, fecha_vencimiento: due.toISOString(), estado: 'pendiente', pagada: false
+      });
+    }
+    await DB.set('cuotas', rec);
+  }
 
-                await updateStock(currentProduct.id);
-                redirectToWhatsApp(formData, purchaseCode);
-            } catch (err) {
-                console.error(err);
-                alert('Error al procesar la compra. Intente nuevamente.');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="bi bi-whatsapp"></i> Confirmar';
-            }
-        }
+  function whatsappUrl(o, productName) {
+    const msg =
+      `*NUEVA COMPRA - ${YL.brand}*\n\n` +
+      `📋 Código: ${o.codigo_compra}\n` +
+      `👤 Cliente: ${o.nombre} ${o.apellido}\n` +
+      `📱 WhatsApp: ${o.whatsapp}\n` +
+      `🏢 Dirección: Edif. ${o.edificio}, Apto ${o.apartamento}\n` +
+      `🛍️ Producto: ${productName}\n` +
+      `💰 Total: ${money(o.monto_total)}\n` +
+      `💳 Pago: ${o.tipo_pago === 'financing' ? 'Financiamiento' : 'Pago completo'}\n\n` +
+      'Por favor confirme la compra para procesar el envío.';
+    return `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+  }
 
-        function generatePurchaseCode() {
-            return 'LS-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
-        }
+  /* =====================================================
+     Eventos
+     ===================================================== */
+  document.addEventListener('click', e => {
+    const buy = e.target.closest('[data-buy]');
+    if (buy) { openBuy(buy.getAttribute('data-buy')); return; }
+    if (e.target.closest('[data-close]')) { closeBuy(); return; }
+    if (e.target.closest('[data-retry]')) { loadProducts(); return; }
+    const pg = e.target.closest('[data-page]');
+    if (pg && !pg.disabled) {
+      page = parseInt(pg.getAttribute('data-page'), 10);
+      render();
+      $('#catalogo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
 
-        async function createFinancingQuotas(purchaseId, totalAmount) {
-            const init = financingConfig.monto_inicial;
-            const quotaAmount = (totalAmount - init) / financingConfig.numero_cuotas;
-            const rec = await DB.get('cuotas');
-            for (let i = 1; i <= financingConfig.numero_cuotas; i++) {
-                const due = new Date();
-                due.setDate(due.getDate() + financingConfig.dias_cuota * i);
-                rec.cuotas.push({
-                    id: uid() + i,
-                    compra_id: purchaseId,
-                    numero_cuota: i,
-                    numero_cuotas: financingConfig.numero_cuotas,
-                    monto: quotaAmount,
-                    fecha_vencimiento: due.toISOString(),
-                    estado: 'pendiente',
-                    pagada: false
-                });
-            }
-            await DB.set('cuotas', rec);
-        }
+  $('#filters').addEventListener('click', e => {
+    const b = e.target.closest('[data-filter]');
+    if (!b) return;
+    filter = b.getAttribute('data-filter');
+    page = 1;
+    document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+    render();
+  });
 
-        async function updateStock(productId) {
-            const rec = await DB.get('productos');
-            const product = rec.productos.find(p => p.id == productId);
-            if (product) {
-                product.stock = Math.max(0, product.stock - 1);
-                if (product.stock <= 0) product.activo = false;
-                await DB.set('productos', rec);
-            }
-        }
+  // Imagen rota → original → marcador de posición
+  $('#grid').addEventListener('error', e => {
+    const img = e.target;
+    if (img.tagName !== 'IMG') return;
+    const n = +img.dataset.fb || 0;
+    if (n > 1) return;
+    img.dataset.fb = n + 1;
+    img.removeAttribute('srcset'); img.removeAttribute('sizes');
+    img.src = n === 0 && img.dataset.orig ? img.dataset.orig : PLACEHOLDER;
+  }, true);
 
-        function redirectToWhatsApp(formData, purchaseCode) {
-            const msg = encodeURIComponent(
-                `*NUEVA COMPRA - LenceriaShops*\n\n` +
-                `📋 Código: ${purchaseCode}\n` +
-                `👤 Cliente: ${formData.nombre} ${formData.apellido}\n` +
-                `📱 WhatsApp: ${formData.whatsapp}\n` +
-                `🏢 Dirección: Edif. ${formData.edificio}, Apto ${formData.apartamento}\n` +
-                `🛍️ Producto: ${currentProduct.name}\n` +
-                `💰 Total: $${parseFloat(formData.monto_total).toFixed(2)}\n` +
-                `💳 Pago: ${formData.tipo_pago === 'financing' ? 'Financiamiento' : 'Pago Completo'}\n\n` +
-                `Por favor confirme la compra para procesar el envío.`
-            );
-            window.open(`https://wa.me/584129204453?text=${msg}`, '_blank');
-            bootstrap.Modal.getInstance(document.getElementById('purchaseModal')).hide();
-            setTimeout(() => {
-                alert('¡Gracias! Tu orden fue enviada a WhatsApp para confirmación.');
-                loadProducts();
-            }, 1000);
-        }
-    </script>
+  $('#yr').textContent = new Date().getFullYear();
+  loadProducts();
+  loadConfig();
+})();
+</script>
 </body>
 </html>
