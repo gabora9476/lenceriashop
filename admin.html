@@ -2,13 +2,21 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Admin - LenceriaShops</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
-    <link rel="apple-touch-icon" href="https://i.ibb.co/gkJx4YM/Generated-Image-November-20-2025-12-39-AM.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="robots" content="noindex, nofollow">
+    <script>if (location.protocol === 'http:' && !/^(localhost|127\.0\.0\.1|\[::1\]|.+\.local)$/.test(location.hostname)) location.replace('https:' + location.href.substring(5));</script>
+    <title>Admin - YamiLencerias</title>
+    <meta name="description" content="Panel administrativo de YamiLencerias.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="LenceriaShops Admin">
+    <meta name="apple-mobile-web-app-title" content="YamiLencerias Admin">
     <meta name="theme-color" content="#d4a574">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://api.jsonbin.io" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
@@ -17,6 +25,7 @@
             --secondary: #f5e6d3;
             --dark: #2c1810;
             --bg: #faf8f5;
+            --primary-text: #8a5a2b;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -38,13 +47,13 @@
             overflow-y: auto;
             transition: transform 0.3s;
         }
-        .sidebar-header { color: white; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.25); }
+        .sidebar-header { color: var(--dark); margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(44,24,16,0.2); }
         .sidebar-header h3 { font-size: 1.1rem; font-weight: 500; letter-spacing: 1px; }
-        .sidebar-header small { font-size: 0.72rem; opacity: 0.85; }
+        .sidebar-header small { font-size: 0.72rem; }
         .nav-menu { list-style: none; padding: 0; }
         .nav-menu li { margin-bottom: 4px; }
         .nav-menu a {
-            color: white;
+            color: var(--dark);
             text-decoration: none;
             padding: 9px 12px;
             display: flex;
@@ -54,7 +63,7 @@
             transition: background 0.2s;
             cursor: pointer;
         }
-        .nav-menu a:hover, .nav-menu a.active { background: rgba(255,255,255,0.22); }
+        .nav-menu a:hover, .nav-menu a.active { background: rgba(255,255,255,0.5); }
         .nav-menu i { margin-right: 8px; font-size: 1rem; }
 
         /* ── Main content ── */
@@ -72,7 +81,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         .content-header h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 2px; }
-        .content-header p { font-size: 0.78rem; color: #888; margin: 0; }
+        .content-header p { font-size: 0.78rem; color: #666; margin: 0; }
         .content-section { display: none; animation: fadeIn 0.25s ease; }
         .content-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -81,7 +90,7 @@
         .card { background: white; border-radius: 12px; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 16px; }
         .card-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            color: var(--dark);
             border-radius: 12px 12px 0 0 !important;
             padding: 10px 16px;
             font-size: 0.9rem;
@@ -100,7 +109,7 @@
         }
         .stats-card i { font-size: 1.8rem; color: var(--primary); display: block; margin-bottom: 4px; }
         .stats-card h3 { font-size: 1.5rem; font-weight: 700; color: var(--dark); margin: 0 0 2px; }
-        .stats-card p { font-size: 0.72rem; color: #888; margin: 0; }
+        .stats-card p { font-size: 0.72rem; color: #666; margin: 0; }
 
         /* ── Buttons ── */
         .btn-primary {
@@ -109,9 +118,9 @@
             border-radius: 8px;
             padding: 7px 14px;
             font-size: 0.82rem;
-            color: white;
+            color: var(--dark);
         }
-        .btn-primary:hover { opacity: 0.9; color: white; }
+        .btn-primary:hover, .btn-primary:active, .btn-primary:focus { opacity: 0.9; color: var(--dark); background: linear-gradient(135deg, var(--primary), var(--secondary)); }
         .btn-sm { padding: 4px 8px; font-size: 0.75rem; border-radius: 6px; }
 
         /* ── Tables ── */
@@ -170,7 +179,7 @@
         .modal-content { border-radius: 14px; border: none; }
         .modal-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            color: var(--dark);
             border-radius: 14px 14px 0 0;
             padding: 12px 16px;
         }
@@ -180,12 +189,12 @@
         /* ── Footer ── */
         .footer {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            color: var(--dark);
             text-align: center;
             padding: 10px 0;
             font-size: 0.72rem;
         }
-        .footer a { color: white; text-decoration: none; }
+        .footer a { color: var(--dark); text-decoration: underline; }
 
         /* ── Mobile bottom nav ── */
         .mobile-bottom-nav {
@@ -203,7 +212,7 @@
             align-items: center;
         }
         .mob-nav-btn {
-            color: white;
+            color: var(--dark);
             text-align: center;
             cursor: pointer;
             padding: 4px 8px;
@@ -219,7 +228,7 @@
         }
         .mob-nav-btn i { font-size: 1.25rem; }
         .mob-nav-btn span { font-size: 0.6rem; white-space: nowrap; }
-        .mob-nav-btn.active { background: rgba(255,255,255,0.25); }
+        .mob-nav-btn.active { background: rgba(255,255,255,0.55); }
         .mob-nav-btn:active { background: rgba(255,255,255,0.35); }
 
         /* ── Sidebar overlay (mobile) ── */
@@ -247,6 +256,27 @@
             .table th, .table td { padding: 6px 8px; }
             .btn-sm { padding: 3px 6px; font-size: 0.7rem; }
         }
+
+        /* ── Ajuste automático: sin scroll horizontal en escritorio ni móvil ── */
+        html { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+        body { overflow-x: clip; overflow-wrap: break-word; }
+        img { max-width: 100%; }
+        .main-content { min-width: 0; max-width: 100%; }
+        .table td, .table th { overflow-wrap: anywhere; }
+        .text-lowstock { color: #856404 !important; }
+        .mobile-bottom-nav { padding-bottom: calc(6px + env(safe-area-inset-bottom)); }
+        .modal-dialog { max-width: calc(100vw - 20px); }
+        @media (max-width: 767px) { .form-control, .form-select { font-size: 16px; } }
+        @media (max-width: 991px) {
+            .table-responsive { overflow-x: visible; }
+            .table thead { display: none; }
+            .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+            .table tr { border-bottom: 1px solid #eee; padding: 8px 10px; }
+            .table td { display: flex; justify-content: space-between; align-items: center; gap: 12px; text-align: right; padding: 4px 0; border: 0; white-space: normal !important; }
+            .table td::before { content: attr(data-label); font-weight: 600; text-align: left; color: #555; flex: none; }
+            .table td[colspan] { display: block; text-align: center; }
+            .table td[colspan]::before { content: none; }
+        }
     </style>
 </head>
 <body>
@@ -257,7 +287,7 @@
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3><i class="bi bi-shop"></i> LenceriaShops</h3>
+            <h3><i class="bi bi-shop"></i> YamiLencerias</h3>
             <small>Panel Administrativo</small>
         </div>
         <ul class="nav-menu">
@@ -266,7 +296,7 @@
             <li><a class="nav-link" onclick="showSection('orders')"><i class="bi bi-receipt"></i> Pedidos</a></li>
             <li><a class="nav-link" onclick="showSection('financing')"><i class="bi bi-credit-card"></i> Financiamiento</a></li>
             <li><a class="nav-link" onclick="showSection('config')"><i class="bi bi-gear"></i> Configuración</a></li>
-            <li><a href="index.html"><i class="bi bi-house"></i> Ver Tienda</a></li>
+            <li><a href="./"><i class="bi bi-house"></i> Ver Tienda</a></li>
         </ul>
     </aside>
 
@@ -280,7 +310,7 @@
                     <h2>Dashboard</h2>
                     <p>Resumen general</p>
                 </div>
-                <button class="btn btn-sm d-md-none" style="background:var(--primary);color:white;border:none;border-radius:8px;" onclick="toggleSidebar()">
+                <button class="btn btn-sm d-md-none" style="background:var(--primary);color:var(--dark);border:none;border-radius:8px;" aria-label="Abrir menú" onclick="toggleSidebar()">
                     <i class="bi bi-list fs-5"></i>
                 </button>
             </div>
@@ -470,7 +500,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Email de Soporte</label>
-                                    <input type="email" class="form-control" id="supportEmail" placeholder="soporte@lenceriashops.com">
+                                    <input type="email" class="form-control" id="supportEmail" placeholder="soporte@yamilencerias.com">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm mt-3">
@@ -483,7 +513,7 @@
         </section>
 
         <footer class="footer mt-3">
-            <small>&copy; 2024 LenceriaShops | <a href="https://www.instagram.com/inkgstar" target="_blank">gstarINK</a></small>
+            <small>&copy; <span id="yr">2026</span> YamiLencerias | <a href="https://www.instagram.com/inkgstar" target="_blank" rel="noopener noreferrer">gstarINK</a></small>
         </footer>
     </main>
 
@@ -514,7 +544,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="productModalTitle">Nuevo Producto</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="productForm">
@@ -560,7 +590,7 @@
                             <div class="image-upload-area" id="imageUploadArea" onclick="document.getElementById('imageInput').click()">
                                 <i class="bi bi-cloud-upload"></i>
                                 <p class="mb-0">Clic para subir imagen</p>
-                                <small class="text-muted">JPG, PNG (Máx. 5MB)</small>
+                                <small class="text-muted">JPG, PNG (Máx. 5MB) · se optimiza automáticamente</small>
                                 <input type="file" id="imageInput" accept="image/*" style="display:none">
                             </div>
                             <div class="upload-progress" id="uploadProgress">
@@ -624,6 +654,8 @@
         };
 
         const uid = () => Date.now() * 1000 + Math.floor(Math.random() * 999);
+        const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const PLACEHOLDER = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#f5e6d3"/></svg>');
 
         const imgbbApiKey = '176862903123d1f89cd3223a4d330174';
 
@@ -642,6 +674,16 @@
         // Init
         // =====================================================
         document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('yr').textContent = new Date().getFullYear();
+            document.querySelectorAll('table.table').forEach(t => {
+                const heads = [...t.querySelectorAll('thead th')].map(th => th.textContent.trim());
+                const tb = t.tBodies[0];
+                const label = () => tb.querySelectorAll('tr').forEach(tr => tr.querySelectorAll('td').forEach((td, i) => {
+                    if (!td.hasAttribute('colspan') && !td.dataset.label) td.dataset.label = heads[i] || '';
+                }));
+                new MutationObserver(label).observe(tb, { childList: true });
+                label();
+            });
             loadDashboardData();
             loadConfiguration();
             setupEventListeners();
@@ -735,13 +777,13 @@
             orders.forEach(order => {
                 tbody.innerHTML += `
                     <tr>
-                        <td><code style="font-size:0.7rem">${order.codigo_compra}</code></td>
-                        <td>${order.nombre} ${order.apellido}</td>
-                        <td>${order.productos?.nombre || 'N/A'}</td>
+                        <td><code style="font-size:0.7rem">${esc(order.codigo_compra)}</code></td>
+                        <td>${esc(order.nombre)} ${esc(order.apellido)}</td>
+                        <td>${esc(order.productos?.nombre || 'N/A')}</td>
                         <td>$${parseFloat(order.monto_total).toFixed(2)}</td>
-                        <td><span class="status-badge ${getOrderStatusClass(order.estado)}">${order.estado || 'pendiente'}</span></td>
+                        <td><span class="status-badge ${getOrderStatusClass(order.estado)}">${esc(order.estado || 'pendiente')}</span></td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary" onclick="verifyPayment('${order.codigo_compra}')">
+                            <button class="btn btn-sm btn-outline-primary" onclick="verifyPayment('${esc(order.codigo_compra)}')">
                                 <i class="bi bi-check-circle"></i>
                             </button>
                         </td>
@@ -775,13 +817,13 @@
                 tbody.innerHTML += `
                     <tr>
                         <td>
-                            <img src="${product.imagen || 'https://picsum.photos/seed/p' + product.id + '/80/80'}"
-                                 alt="${product.nombre}" style="width:40px;height:40px;object-fit:cover;border-radius:6px;">
+                            <img src="${esc(product.imagen || PLACEHOLDER)}"
+                                 alt="${esc(product.nombre)} – YamiLencerias" width="40" height="40" loading="lazy" decoding="async" style="width:40px;height:40px;object-fit:cover;border-radius:6px;">
                         </td>
-                        <td><strong>${product.nombre}</strong></td>
+                        <td><strong>${esc(product.nombre)}</strong></td>
                         <td><span class="status-badge" style="background:var(--secondary);color:var(--dark)">${sizeName}</span></td>
                         <td>$${parseFloat(product.precio).toFixed(2)}</td>
-                        <td class="${product.stock > 5 ? 'text-success' : product.stock > 0 ? 'text-warning' : 'text-danger'}">
+                        <td class="${product.stock > 5 ? 'text-success' : product.stock > 0 ? 'text-lowstock' : 'text-danger'}">
                             <strong>${product.stock}</strong>
                         </td>
                         <td>
@@ -907,20 +949,20 @@
             orders.forEach(order => {
                 tbody.innerHTML += `
                     <tr>
-                        <td><code style="font-size:0.7rem">${order.codigo_compra}</code></td>
+                        <td><code style="font-size:0.7rem">${esc(order.codigo_compra)}</code></td>
                         <td>${order.fecha_creacion ? new Date(order.fecha_creacion).toLocaleDateString() : '-'}</td>
-                        <td>${order.nombre} ${order.apellido}</td>
+                        <td>${esc(order.nombre)} ${esc(order.apellido)}</td>
                         <td>
                             <a href="https://wa.me/${(order.whatsapp || '').replace(/\D/g, '')}" target="_blank" style="font-size:0.78rem">
-                                ${order.whatsapp}
+                                ${esc(order.whatsapp)}
                             </a>
                         </td>
-                        <td>${order.productos?.nombre || 'N/A'}</td>
+                        <td>${esc(order.productos?.nombre || 'N/A')}</td>
                         <td>$${parseFloat(order.monto_total).toFixed(2)}</td>
                         <td>${order.tipo_pago === 'financing' ? 'Financiado' : 'Completo'}</td>
-                        <td><span class="status-badge ${getOrderStatusClass(order.estado)}">${order.estado || 'pendiente'}</span></td>
+                        <td><span class="status-badge ${getOrderStatusClass(order.estado)}">${esc(order.estado || 'pendiente')}</span></td>
                         <td>
-                            <button class="btn btn-sm btn-outline-success" onclick="verifyPayment('${order.codigo_compra}')">
+                            <button class="btn btn-sm btn-outline-success" onclick="verifyPayment('${esc(order.codigo_compra)}')">
                                 <i class="bi bi-check-circle"></i>
                             </button>
                         </td>
@@ -970,8 +1012,8 @@
                 const overdue = new Date(quota.fecha_vencimiento) < new Date();
                 tbody.innerHTML += `
                     <tr>
-                        <td><code style="font-size:0.7rem">${quota.compras.codigo_compra || '-'}</code></td>
-                        <td>${quota.compras.nombre || ''} ${quota.compras.apellido || ''}</td>
+                        <td><code style="font-size:0.7rem">${esc(quota.compras.codigo_compra || '-')}</code></td>
+                        <td>${esc(quota.compras.nombre)} ${esc(quota.compras.apellido)}</td>
                         <td>Cuota ${quota.numero_cuota}/${quota.numero_cuotas || '?'}</td>
                         <td>$${parseFloat(quota.monto).toFixed(2)}</td>
                         <td>${new Date(quota.fecha_vencimiento).toLocaleDateString()}</td>
@@ -980,7 +1022,7 @@
                             <button class="btn btn-sm btn-outline-success" onclick="verifyQuotaPayment(${quota.id})">
                                 <i class="bi bi-check-circle"></i>
                             </button>
-                            <button class="btn btn-sm btn-outline-warning ms-1" onclick="sendReminder('${quota.compras.codigo_compra}', ${quota.numero_cuota})">
+                            <button class="btn btn-sm btn-outline-warning ms-1" onclick="sendReminder('${esc(quota.compras.codigo_compra)}', ${quota.numero_cuota})">
                                 <i class="bi bi-bell"></i>
                             </button>
                         </td>
@@ -1021,7 +1063,7 @@
                 const order = rec.compras.find(o => o.codigo_compra === orderCode);
                 if (!order) throw new Error('Orden no encontrada');
                 const msg = encodeURIComponent(
-                    `📝 *RECORDATORIO DE PAGO - LenceriaShops*\n\n` +
+                    `📝 *RECORDATORIO DE PAGO - YamiLencerias*\n\n` +
                     `📋 Código: ${orderCode}\n` +
                     `👤 Cliente: ${order.nombre} ${order.apellido}\n` +
                     `💳 Cuota: ${quotaNumber}\n\n` +
@@ -1049,7 +1091,7 @@
                     return;
                 }
                 overdue.forEach((q, i) => {
-                    div.innerHTML += `<div class="whatsapp-message">Recordatorio → ${q.compras.nombre || ''} ${q.compras.apellido || ''} - Cuota ${q.numero_cuota}</div>`;
+                    div.innerHTML += `<div class="whatsapp-message">Recordatorio → ${esc(q.compras.nombre)} ${esc(q.compras.apellido)} - Cuota ${q.numero_cuota}</div>`;
                     if (q.compras.codigo_compra) {
                         setTimeout(() => sendReminder(q.compras.codigo_compra, q.numero_cuota), (i + 1) * 1200);
                     }
@@ -1134,10 +1176,27 @@
             uploadImageToImgBB(file);
         }
 
+        // Reduce a máx. 1200 px y convierte a WebP (calidad 0.8) antes de subir
+        async function compressImage(file) {
+            try {
+                const bmp = await createImageBitmap(file);
+                const scale = Math.min(1, 1200 / Math.max(bmp.width, bmp.height));
+                const canvas = document.createElement('canvas');
+                canvas.width = Math.round(bmp.width * scale);
+                canvas.height = Math.round(bmp.height * scale);
+                canvas.getContext('2d').drawImage(bmp, 0, 0, canvas.width, canvas.height);
+                const blob = await new Promise(r => canvas.toBlob(r, 'image/webp', 0.8));
+                if (blob && blob.type === 'image/webp' && blob.size < file.size) return { data: blob, name: 'producto.webp' };
+            } catch (e) { /* si falla, se sube la original */ }
+            return { data: file, name: file.name };
+        }
+
         async function uploadImageToImgBB(file) {
             const formData = new FormData();
             formData.append('key', imgbbApiKey);
-            formData.append('image', file);
+            document.getElementById('uploadProgress').style.display = 'block';
+            const out = await compressImage(file);
+            formData.append('image', out.data, out.name);
             try {
                 document.getElementById('uploadProgress').style.display = 'block';
                 document.getElementById('progressBar').style.width = '50%';
@@ -1188,7 +1247,7 @@
             const div = document.createElement('div');
             div.className = `alert ${alertClass} alert-dismissible fade show position-fixed`;
             div.style.cssText = 'top:16px;right:16px;z-index:9999;font-size:0.82rem;padding:8px 36px 8px 12px;max-width:280px;';
-            div.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert" style="top:6px;right:8px;"></button>`;
+            div.innerHTML = `${esc(message)}<button type="button" class="btn-close" data-bs-dismiss="alert" style="top:6px;right:8px;"></button>`;
             document.body.appendChild(div);
             setTimeout(() => { if (div.parentElement) div.remove(); }, 3000);
         }

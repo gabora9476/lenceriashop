@@ -43,6 +43,8 @@
 
   /* ── Aviso de cookies ── */
   var KEY = 'yl_cookie_consent';
+  var me = document.currentScript;
+  var BASE = me && me.src ? me.src.replace(/site\.js(\?.*)?$/, '') : '';
   var read = function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
   var write = function (v) { try { localStorage.setItem(KEY, v); } catch (e) { /* sin almacenamiento */ } };
 
@@ -57,7 +59,7 @@
       '<h2 id="cookieTitle">Cookies y almacenamiento</h2>' +
       '<p>Usamos solo almacenamiento técnico para que el catálogo cargue rápido y recordar tu elección. ' +
       'No usamos cookies de publicidad ni de analítica. Más detalles en la ' +
-      '<a href="politica-cookies.html">política de cookies</a>.</p>' +
+      '<a href="' + BASE + 'politica-cookies.html">política de cookies</a>.</p>' +
       '<div class="cookie-actions">' +
       '<button type="button" class="btn" data-choice="all">Aceptar</button>' +
       '<button type="button" class="btn btn-ghost" data-choice="necessary">Solo necesarias</button>' +
